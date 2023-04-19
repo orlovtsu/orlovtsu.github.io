@@ -40,7 +40,7 @@ Technology stack:
 
 If you want to read the full report, please follow the [link](https://github.com/orlovtsu/portfolio/blob/main/university_majors_stat/README.md).
 
-### [Part 2. Statistical Data Analysis]()
+### [Part 2. Statistical Data Analysis](https://github.com/orlovtsu/portfolio/blob/main/university_majors_stat/README.md)
 
 The second part of this project is Statistical Data Analysis for the same dataset. 
 
@@ -58,7 +58,7 @@ Technology stack:
 
 ![Median salary to Proportion of women by major](https://github.com/orlovtsu/portfolio/blob/main/university_majors_stat/images/salary_correlation.png)
 
-If you want to read the full report, please follow the [link]().
+If you want to read the full report, please follow the [link](https://github.com/orlovtsu/portfolio/blob/main/university_majors_stat/README.md).
 
 ### Links 
 The dataset used for this project: https://www.kaggle.com/datasets/thedevastator/uncovering-insights-to-college-majors-and-their
