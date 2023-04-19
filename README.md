@@ -36,9 +36,9 @@ Technology stack:
 - math, statistics
 - pandas, numpy
 
-![Top 20 salaries and least unemployment rate](https://github.com/orlovtsu/portfolio/blob/main/university_majors/images/fig12.png)
+![Top 20 salaries and least unemployment rate](/university_majors/images/fig12.png)
 
-If you want to read the full report, please follow the [link](https://github.com/orlovtsu/portfolio/blob/main/university_majors_stat/README.md).
+If you want to read the full report, please follow the [link](/university_majors_stat/README.md).
 
 ### [Part 2. Statistical Data Analysis](https://github.com/orlovtsu/portfolio/blob/main/university_majors_stat/README.md)
 
@@ -56,9 +56,9 @@ Technology stack:
 - ggplot2, dplyr, scales, mosaic
 - gridExtra, grid
 
-![Median salary to Proportion of women by major](https://github.com/orlovtsu/portfolio/blob/main/university_majors_stat/images/salary_correlation.png)
+![Median salary to Proportion of women by major](/university_majors_stat/images/salary_correlation.png)
 
-If you want to read the full report, please follow the [link](https://github.com/orlovtsu/portfolio/blob/main/university_majors_stat/README.md).
+If you want to read the full report, please follow the [link](/university_majors_stat/README.md).
 
 ### Links 
 The dataset used for this project: https://www.kaggle.com/datasets/thedevastator/uncovering-insights-to-college-majors-and-their
