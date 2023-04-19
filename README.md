@@ -1,4 +1,4 @@
-# Sergey Orlov 
+# [Sergey Orlov](https://www.linkedin.com/in/orlovtsu/)
 # Data Scientist porfolio
 
 Hello everyone! Wellcome to my porfolio. I am going to explain interesting projects which I do as Data Scientist.
