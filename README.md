@@ -16,6 +16,11 @@ What was done:
 - the distribution of graduate salaries and unemployment rate depending on major category, gender was investigated using boxplots with describing 20th and 75th percentiles, medians and variance distributions.
 - the categories with top 20 salaries and least unemployment rates were found using the scatterplot visualizations with plotly and matplotlib
 
-[Top 20 salaries and least unemployment rate]( )
+[Top 20 salaries and least unemployment rate](https://github.com/orlovtsu/portfolio/blob/main/project1/images/fig12.png)
 
+If you want to read the whole report, please follow the [link]().
+If you have any questions, or additions, please, fill free to connect with me via LinkedIn, email or phone.
+
+
+# Project 2:
 
