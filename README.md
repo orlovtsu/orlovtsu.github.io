@@ -61,4 +61,4 @@ Technology stack:
 If you want to read the full report, please follow the [link](/university_majors_stat/README.md).
 
 ### Links 
-The dataset used for this project: [https://www.kaggle.com/datasets/thedevastator/uncovering-insights-to-college-majors-and-their]
+The dataset used for this project: (https://www.kaggle.com/datasets/thedevastator/uncovering-insights-to-college-majors-and-their])
