@@ -1,4 +1,5 @@
-# Sergey Orlov Data Science porfolio
+# Sergey Orlov 
+# Data Scientist porfolio
 
 Hello everyone! Wellcome to my porfolio. I am going to explain interesting projects which I do as Data Scientist.
 Previously, I have got an experience in many different fields from scientific programming to product management, and now I dive deep into the Data Science and happy to invite you to this fascinating world with me. 
