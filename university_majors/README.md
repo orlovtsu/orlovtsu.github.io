@@ -128,5 +128,5 @@ For the research with guiding questions two data tables have been chosen:
 
 The total number of majors displayed in dataset is 172, but the distribution between the engineering, scientific or humanitarian majors is not uniform.
 
-![Distribution of majors by category](/university_majors/images/fig0)
+![Distribution of majors by category](/university_majors/images/fig0.png)
 We have done a number of functions on the dataset such as Checking for NAs,Checking for Duplicates,Ensuring that the  entire dataset has consistent Formatting.
