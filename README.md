@@ -19,7 +19,8 @@ What was done:
 ![Top 20 salaries and least unemployment rate](https://github.com/orlovtsu/portfolio/blob/main/project1/images/fig12.png)
 
 If you want to read the whole report, please follow the [link]().
-If you have any questions, or additions, please, fill free to connect with me via LinkedIn, email or phone.
+
+If you have any questions about this project, or additions, please, fill free to connect with me via LinkedIn, email or phone.
 
 
 # Project 2:
