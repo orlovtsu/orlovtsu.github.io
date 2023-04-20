@@ -37,10 +37,52 @@ All this data is under the [Creative Commons Attribution 4.0 International Licen
 
 ### 1. Is there a relationship between major categories and the unemployment rate?
 
-**Hypothesis** <br \>
+**Hypothesis** <br />
 To make a conclusion about the difference of unemployment rate between different majors the next hypothesis is done: <br />
 $H_0$: There is no significant difference between in the unemployment rate between major categories<br />
 $H_A$: There is significant difference between in the unemployment rate between major categories<br />
+
+For checking the hypothesis it can be compared each major unemployment rate with the unemployment rates of all majors. To compare these variables, we used bootstrap statistics
+
+Bootstrap confidence intervals for the unemployment rate:
+
+![Bootstrap confidence intervals for the unemployment rate](/university_majors_stat/images/bootstrap_unemployment.png)
+
+![Differences](/university_majors_stat/images/diff1.png)
+
+Bootstrap confidence intevals for differences of the mean unemployment rate and unemployment rate by category:
+
+![Bootstrap confidence intevals for differences of the mean unemployment rate and unemployment rate by category](/university_majors_stat/images/bootstrap_unemployment_diff.png)
+
+Based on data and graphs above, we can infer that in most of the Major categories the population
+mean does not fall into the confidence interval. We conclude that our null hypothesis is rejected.
+All major categories has their own unemployment rates.
+
+To examine whether we are confident about our data and to better understand the type of distributions,
+we created Normal Probability Plots for each difference in mean distribution.
+
+![QQplot1](/university_majors_stat/images/qqplot1.png)
+
+To illustrate the variance of unemployment rate by major category the number of boxplots is illustrated bellow.
+
+![Variance of unemployment](/university_majors_stat/images/unemployment_rate.png)
+
+Based on the data presented, we can see that the unemployment rate for each major category falls within a range of 0.03-0.08.
+A closer analysis of the graph reveals that certain majors stand out. Specifically, graduates with degrees in Agriculture & Natural Resources and Education have the lowest unemployment rate, with an average of 0.03951. This indicates that students in these fields are more likely to secure
+employment after graduation. 
+Conversely, the Arts major has the highest unemployment rate, with an average of 0.0877. This implies that graduates with degrees in the Arts face more difficulty in finding employment compared to their peers in other majors. 
+
+**Hypothesis** <br />
+To make a conclusion about the difference of salaries between different majors the next hypothesis is done:
+
+$H_0$: There is significant difference between in the median salary between major categories 
+$H_A$: There is no significant difference between in the median salary between major categories
+
+For checking the hypothesis it can be compared each major median salary with median salary of all majors. To compare these variables bootstrap can be used.
+
+Bootstrap confidence intervals for the median salary:
+
+![Bootstrap confidence intervals for the median salary](/university_majors_stat/images/bootstrap_unemployment.png)
 
 
 ## Gratitudes 
