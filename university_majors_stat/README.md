@@ -54,9 +54,7 @@ Bootstrap confidence intevals for differences of the mean unemployment rate and 
 
 ![Bootstrap confidence intevals for differences of the mean unemployment rate and unemployment rate by category](/university_majors_stat/images/bootstrap_unemployment_diff.png)
 
-Based on data and graphs above, we can infer that in most of the Major categories the population
-mean does not fall into the confidence interval. We conclude that our null hypothesis is rejected.
-All major categories has their own unemployment rates.
+Based on data and graphs above, we can infer that in most of the Major categories the population mean does not fall into the confidence interval. We conclude that our null hypothesis is rejected. All major categories has their own unemployment rates.
 
 To examine whether we are confident about our data and to better understand the type of distributions,
 we created Normal Probability Plots for each difference in mean distribution.
@@ -72,6 +70,8 @@ A closer analysis of the graph reveals that certain majors stand out. Specifical
 employment after graduation. 
 Conversely, the Arts major has the highest unemployment rate, with an average of 0.0877. This implies that graduates with degrees in the Arts face more difficulty in finding employment compared to their peers in other majors. 
 
+## 2. What is the relationship between salary and different major categories?
+
 **Hypothesis** <br />
 To make a conclusion about the difference of salaries between different majors the next hypothesis is done:
 
@@ -82,8 +82,26 @@ For checking the hypothesis it can be compared each major median salary with med
 
 Bootstrap confidence intervals for the median salary:
 
-![Bootstrap confidence intervals for the median salary](/university_majors_stat/images/bootstrap_unemployment.png)
+![Bootstrap confidence intervals for the median salary](/university_majors_stat/images/bootstrap_salary.png)
 
+![Differences](/university_majors_stat/images/diff2.png)
+
+Bootstrap confidence intevals for differences of the median salary by category:
+
+![Bootstrap confidence intevals for differences of the median salary by category](/university_majors_stat/images/bootstrap_salary_diff.png)
+
+To examine whether we are confident about our data and to better understand the type of distributions,
+we created Normal Probability Plots for each difference in mean distribution.
+
+![QQplot1](/university_majors_stat/images/qqplot2.png)
+
+To illustrate the variance of unemployment rate by major category the number of boxplots is illustrated bellow.
+
+![Variance of median salary](/university_majors_stat/images/median_salary.png)
+
+The null hypothesis is rejected. There is a significant difference in median salary between major categories. It means that people who study Engineering or Computer Science & Mathematics will have in general higher median salary then people who study Psycology or Arts. It can be important for them who are just decide what major to choose.
+
+## 3. 
 
 ## Gratitudes 
 
