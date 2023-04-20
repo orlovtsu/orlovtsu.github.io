@@ -41,6 +41,10 @@ We have done a number of functions on the dataset such as Checking for NAs,Check
 ### License:
 All this data is under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/publicdomain/zero/1.0/) and MIT License. The last update of the dataset was in November of 2022. 
 
+## Code
+
+[Jupyter Notebook](https://github.com/orlovtsu/portfolio/blob/main/university_majors/university_majors.ipynb)
+
 ## Results
 
 ### 1. The Distribution of majors by category:
