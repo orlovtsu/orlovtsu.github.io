@@ -11,25 +11,25 @@ Major is a specific area of study in which a student chooses to specialize. Popu
 However, most students know they want a good-paying and secure job. This is why they are willing to make the investment of time and money to go to college.
 A degree can open up unexpected And exciting opportunities and pathways that are more attractive, having perks such as a better work environment, retirement health insurance, paid time off, bonuses, stock options, wellness and benefits, continuing education as well as other memberships. There’s no doubt choosing a major is a big decision and one that many students agonize over.
 
-You might be wondering, why is choosing major important anyway?. Don't plenty of students go in undecided or switch their initial majors and still figure it out?. It’s a sad fact that even though more students are going to college than ever, many of them are not making  it across the finish line and earn their bachelor's degree.
+You might be wondering, why is choosing a major important anyway?. Don't plenty of students go in undecided or switch their initial majors and still figure it out?. It’s a sad fact that even though more students are going to college than ever, many of them are not making  it across the finish line and earning their bachelor's degree.
 
 Here are the 3 most common reasons why students dropout, fail out or transferred out of college.
    1. They get discouraged after flipping repeatedly from major to major.
 
    2. They take classes that don't fit their unique aptitudes, skill sets and strengths.
-   3. They feel overwhelmed by the combination of taking coursers, adjusting to the college life, choosing college major depending on the employment rate, the unemployment rate, the popularity of the major etc.
-
-Our mission is to help school students find their passion and choose majors, make the task of getting information about college degrees easy. Choosing right major’s according to a person’s skill and knowledge will help make the society a better place to live.
+   3. They feel overwhelmed by the combination of taking courses, adjusting to college life, choosing college major depending on the employment rate, the unemployment rate, the popularity of the major etc.
+   
+Our mission is to help school students find their passion and choose majors, making the task of getting information about college degrees easy. Choosing the right major according to a person’s skill and knowledge will help make the society a better place to live.
 
 ## Guiding questions
 
 Our guiding questions are based on the questions a student will get when they are choosing a major for their college degree. Even high school students are feeling overwhelmed while thinking about what major they are going to choose. 
 
-Many are also very uncertain about whether what they have chosen has a scope to shine in near future? To bring solutions to all these questions that rises in a student’s mind we have formed a set of guiding questions which we will find answer with the help of python graph plotting’s.
+Many are also very uncertain about whether what they have chosen has a scope to shine in the near future?  To bring solutions to all these questions that rises in a student’s mind we have formed a set of guiding questions which we will find answers with the help of python graph plotting.
 
   1. How does Employee’s Salary is distributed depending on their university major?
 
-  2. What major should be chosen to find a job and maximise a salary in the future?
+  2. What major should be chosen to find a job and maximize a salary in the future?
 
   3. Distribution of men and women salaries and opportunities to find jobs depending on their majors?
 
@@ -46,11 +46,13 @@ All this data is under the Creative Commons Attribution 4.0 International Licens
 ### 1. The Distribution of majors by category:
 ![Distribution of majors by category](/university_majors/images/fig0.png)
 
-The total number of majors displayed in dataset is 172 grouped into 16 groups, but, as we can see, the distribution between the engineering, scientific or humanitarian majors is not uniform.
+The total number of majors displayed in the dataset is 172 grouped into 16 groups, but, as we can see, the distribution between the engineering, scientific or humanitarian majors is not uniform.
 
-### 2. There is interesting question to understand what is employment rate by major and salary distribution by majors?
+The next interesting question to understand,
+### 2. What is the employment rate by major and salary distribution by majors?
 
-Unemployment rate by major category:
+Unemployment rate by major category can help to understand chances to find a job after graduation. If anyone who makes a choice about a future field of study has a doubt it can be useful for that.
+
 ![Unemployment rate by major category](/university_majors/images/fig1.png)
 
 Median salary by major category:
@@ -101,21 +103,21 @@ Top lowest salary and highest unemployment rate major categories:
 
 ## Conclusion
 
-As for the conclusion, we can say that our data analysis will be the great help to students of all age, mainly high school students who are in main need of informations on majors and its categories in college.
+In conclusion, we can say that our data analysis will be the great help to students of all age, mainly high school students who are in need of information on majors and its categories in college.
 
 With the help of our analysis, the task of getting information about college major's an its scope are made easy.
 
-We have analysed the dataset of USA, from which we have plotted our graphs and interpretted that most of the major's that fall under STEM(Science,Technology,Engineering and Mathematics) have higher chance of getting more salary and also has lowest unemployment rate.
+We have analyzed the dataset of the USA, from which we have plotted our graphs and interpreted that most of the major's that fall under STEM(Science,Technology,Engineering and Mathematics) have higher chances of getting more salary and also has lowest unemployment rate.
 
-As scope and importance of all major's in education are same across all over the world, we can strongly say that this data will be helpfull to students all over the world.
+As the scope and importance of all major's in education are the same across all over the world, we can strongly say that this data will be helpful to students all over the world.
 
-Choosing right majors according to a student's skill and interest will help increase their quality of life and happiness.
+Choosing the right majors according to a student's skill and interest will help increase their quality of life and happiness.
 
       "Happy people will produce healthy society with strong economy and higher living standard"
 
 ## Gratitudes 
 
-I would like to special thank the [Dr. Tamer Jarada](https://www.linkedin.com/in/tamerjarada/) for the very useful feedback and great insights I received from his educational course and my project partner [Shrivarshini Balaji](https://www.linkedin.com/in/shrivarshini-balaji-999551188/) for productive cooperation, responsibility and excellent communication.
+I would like to special thank [Dr. Tamer Jarada](https://www.linkedin.com/in/tamerjarada/) for the very useful feedback and great insights I received from his educational course and my project partner [Shrivarshini Balaji](https://www.linkedin.com/in/shrivarshini-balaji-999551188/) for productive cooperation, responsibility and excellent communication.
 
 
 ## References 
