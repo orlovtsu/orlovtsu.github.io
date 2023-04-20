@@ -39,7 +39,7 @@ This dataset contains a comprehensive selection of lavish data and processing sc
 We have done a number of functions on the dataset such as Checking for NAs,Checking for Duplicates,Ensuring that the  entire dataset has consistent Formatting.
 
 ### License:
-All this data is under the Creative Commons Attribution 4.0 International License and MIT License. The last update of the dataset was in November of 2022. 
+All this data is under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/publicdomain/zero/1.0/) and MIT License. The last update of the dataset was in November of 2022. 
 
 ## Results
 
