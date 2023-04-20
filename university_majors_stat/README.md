@@ -137,7 +137,7 @@ Despite these limitations, based on our current data, we reject our null hypothe
 
 ## Conclusion
 
-Overall, based on our analysis, we can conclude that the major an individual chooses will impact their salary and unemployment rates in the future. Finally, we concluded that as the proportion of women in each major decreases, the median salary decreases. This analysis can be helpful for university students choosing their major with more confidence based on their interests and goals. By choosing the right major based on their passion and skills, students would perform better in their university and subsequently in their future jobs and have better mental health. This will help society as a whole and helps it to function better.
+Overall, based on our analysis, we can conclude that the major an individual chooses will impact their salary and unemployment rates in the future. Finally, we concluded that as the proportion of women in each major increases, the median salary decreases. This analysis can be helpful for university students choosing their major with more confidence based on their interests and goals. By choosing the right major based on their passion and skills, students would perform better in their university and subsequently in their future jobs and have better mental health. This will help society as a whole and helps it to function better.
 
 ## Gratitudes 
 
