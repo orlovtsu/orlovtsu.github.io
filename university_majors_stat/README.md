@@ -75,8 +75,8 @@ Conversely, the Arts major has the highest unemployment rate, with an average of
 **Hypothesis** <br />
 To make a conclusion about the difference of salaries between different majors the next hypothesis is done:
 
-$H_0$: There is significant difference between in the median salary between major categories 
-$H_A$: There is no significant difference between in the median salary between major categories
+$H_0$: There is significant difference between in the median salary between major categories <br />
+$H_A$: There is no significant difference between in the median salary between major categories<br />
 
 For checking the hypothesis it can be compared each major median salary with median salary of all majors. To compare these variables bootstrap can be used.
 
@@ -101,7 +101,43 @@ To illustrate the variance of unemployment rate by major category the number of 
 
 The null hypothesis is rejected. There is a significant difference in median salary between major categories. It means that people who study Engineering or Computer Science & Mathematics will have in general higher median salary then people who study Psycology or Arts. It can be important for them who are just decide what major to choose.
 
-## 3. 
+## 3. Is there a relationship between female proportion in each major category and median salary?
+
+**Hypothesis** <br />
+
+$H_0$: Female proportion in each major does NOT impact median salary.<br />
+$H_A$: Female proportion in each major IMPACTS median salary.<br />
+
+To find the correlation coefficient values between female proportions and their median salary, we created a Matrix to store the values followed by a for loop to iterate over each majors.
+
+Coefficient of correlation using data for all categories = -0.614711476104321
+
+![Correlation](/university_majors_stat/images/correlation1.png)
+
+Now see the table that we created from the original dataset for our question. From which we can plot the graph to analyse in which major, female proportions have highest median salary and in which major women have lowest median salary. 
+
+![Salary Correlation](/university_majors_stat/images/salary_correlation.png)
+
+Fitting linear model for the relationship between median salary and proportion of women:
+
+$S_{Median} = 56130.94 - 30579.83 * P_{Women}$, where S - salary, P - proportion <br />
+Coefficient of correlation is -0.6147
+
+This model should follow two conditions to be accepted:
+1. Normal distribution of variable. For checking this condition we have to calculate residuals between each value and predicted model and use Normal probability plot for residuals to check the normality.
+
+For checking this condition we have to calculate residuals between each value and predicted model and use Normal probability plot for residuals to check the normality.
+
+![normality](/university_majors_stat/images/qqplot3.png)
+
+2. Homoscedasticity of distribution - For each distinct value of the x-variable (the predictor variable), the y variable has the same standard deviation $\sigma$
+![homoscedasticity](/university_majors_stat/images/homoscedasticity.png)
+
+Despite these limitations, based on our current data, we reject our null hypothesis and conclude that the proportion of women across different majors will impact median salary.
+
+## Conclusion
+
+Overall, based on our analysis, we can conclude that the major an individual chooses will impact their salary and unemployment rates in the future. Finally, we concluded that as the proportion of women in each major decreases, the median salary decreases. This analysis can be helpful for university students choosing their major with more confidence based on their interests and goals. By choosing the right major based on their passion and skills, students would perform better in their university and subsequently in their future jobs and have better mental health. This will help society as a whole and helps it to function better.
 
 ## Gratitudes 
 
