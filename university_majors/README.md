@@ -86,7 +86,7 @@ Median salary to women proportion rate:
 ![Median salary to women proportion rate](/university_majors/images/fig6.png)
 
 The tendency can be viewed from the scatterplot. We can find that the median salary really depends on the women's rate in specialization. 
-It is really sad in the 21st century, and of course this fact can depend on the dataset.  But we work with this dataset and make the conclusions from data we have. So, let's find which of more "women'' majors have the highest median salaries?
+It is really sad in the 21st century, and of course this fact may depend on the dataset.  But we work with this dataset and make conclusions from the data we have. So, let's find which of more "women'' majors have the highest median salaries?
 
 Top 20 highest salary majors with women proportion > 50%:
 
@@ -143,7 +143,7 @@ We have analyzed the dataset of the USA, from which we have plotted our graphs a
 
 As the scope and importance of all major's in education are the same across all over the world, we can strongly say that this data will be helpful to students all over the world.
 
-Choosing the right majors according to a student's skill and interest will help increase their quality of life and happiness.
+Choosing the right majors according to a student's skill and interest will help increase their quality of life and happiness, because
 
       "Happy people will produce healthy society with strong economy and higher living standard"
 
