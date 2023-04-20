@@ -11,8 +11,8 @@ If you have any questions about these projects or any additions, please, fill fr
 
 ## Project "STUDENTS AND CHOOSING MAJORS"
 
-### [Part 1. Analysis using Data Visualization](https://github.com/orlovtsu/portfolio/blob/main/university_majors/)
-### [Part 2. Statistical Data Analysis](https://github.com/orlovtsu/portfolio/blob/main/university_majors_stat/)
+### Part 1. Analysis using Data Visualization [[repository](https://github.com/orlovtsu/portfolio/blob/main/university_majors/)][[report](/university_majors/README.md)]
+### Part 2. Statistical Data Analysis [[repository](https://github.com/orlovtsu/portfolio/blob/main/university_majors_stat/)][[report](/university_majors_stat/README.md)]
 
 ### Overview
 The study project which was done for the courses "Working with Data and Visualiation" and "Statistical Data Analysis" during my Master of Data Science and Analytics program at the University of Calgary. This project was made in group, the links to my classmates are made in the full reports. 
@@ -38,7 +38,7 @@ Technology stack:
 
 ![Top 20 salaries and least unemployment rate](/university_majors/images/fig12.png)
 
-If you want to read the full report, please follow the [link](/university_majors_stat/README.md).
+If you want to read the full report, please follow the [link](/university_majors/README.md).
 
 ### [Part 2. Statistical Data Analysis](https://github.com/orlovtsu/portfolio/blob/main/university_majors_stat/)
 
