@@ -24,7 +24,7 @@ For our project we use data from the dataset “College Majors and their Graduat
 
 ### Part 1. Analysis using Data Visualization <a name="university_majors_visualization"></a> [[report](https://github.com/orlovtsu/portfolio/blob/main/university_majors/)]
 
-This project is focused on visualization tasks
+This part of project is focused on visualization tasks
 
 What was done:
 - the distribution of majors by category was described using piechart from plotly
@@ -35,7 +35,7 @@ Technology stack:
 - Python
 - matplotlib, plotly
 - math, statistics
-- pandas, numpy
+- pandas, numpy                                     |
 
 ### Part 2. Statistical Data Analysis<a name="university_majors_stat"></a> [[report](https://github.com/orlovtsu/portfolio/blob/main/university_majors_stat/)]
 
