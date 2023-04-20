@@ -51,7 +51,7 @@ The total number of majors displayed in the dataset is 172 grouped into 16 group
 The next interesting question to understand,
 ### 2. What is the employment rate by major and salary distribution by majors?
 
-Unemployment rate by major category can help to understand chances to find a job after graduation. If anyone who makes a choice about a future field of study has a doubt it can be useful for that.
+Unemployment rate and salary distribution by major category can help to understand chances to find a job after graduation. If anyone who makes a choice about a future field of study has a doubt it can be useful for that.
 
 ![Unemployment rate by major category](/university_majors/images/fig1.png)
 
@@ -67,27 +67,55 @@ Unemployment rate by major category for recent graduates:
 Median salary by major category for recent graduates:
 ![Median salary by major category](/university_majors/images/fig4.png)
 
-### 3. Male and female distributions differences by major
+As we can find, the leaders are very predictable: Engineering, Computing & Mathematics, Business and Physical Science. But we also can find that the very fast growth of recent specialist salaries is detected for Law & Public policy, but it is also riskful to stay without a job if you are a recent Law & Public Policy graduate. 
 
-One of the useful distributions might be the male and female most preferred majors distributions. We can gather these data from our dataset for recent graduates.
+It is also sad (for me as a long-time university employed person) that based on this data we can conclude that such fields as Education, Psychology & Social Work, Humanities and Art are underpaid and also riskful in job finding for recent graduates.  
+
+People who are going to follow their passion in these fields should be more prepared for these aspects of their fields in the future.
+
+### 3. Men and women distributions differences by major
+
+One of the useful distributions might be the men and women most preferred majors distributions. We can gather these data from our dataset for recent graduates.
 
 Men and Women proportion by major category:
 ![Men and Women proportion by major category](/university_majors/images/fig5.png)
 
+There is interesting fact that in 21 century we are still have more men and more women major categories. Let's try to find is this fact has influence on the future median salary.
+
 Median salary to women proportion rate:
 ![Median salary to women proportion rate](/university_majors/images/fig6.png)
 
+The tendency can be viewed from the scatterplot. We can find that the median salary really depends on the women's rate in specialization. 
+It is really sad in the 21st century, and of course this fact can depend on the dataset.  But we work with this dataset and make the conclusions from data we have. So, let's find which of more "women'' majors have the highest median salaries?
+
 Top 20 highest salary majors with women proportion > 50%:
+
 ![Top 20 highest salary majors with women proportion > 50%](/university_majors/images/fig7.png)
 
+..and what if we also consider the unemployment rate?
+
 Top 20 highest salary majors with women proportion > 50% with unemployment rates:
+
 ![Top 20 highest salary majors with women proportion > 50% with unemployment rates](/university_majors/images/fig8.png)
 
+Top 20 highest salary majors with women proportion > 50% with unemployment rates:
+
+![Top 20 highest salary majors with women proportion > 50% with unemployment rates](/university_majors/images/data_top20women.png)
+
+Thus, we have found the most demanded majors on the labor market to study, which women go to in greater numbers than men.
+But let's consider the same questions for majors with higher men proportion than women.
+
 Top 20 highest salary majors with men proportion > 50%:
+
 ![Top 20 highest salary majors with men proportion > 50%](/university_majors/images/fig9.png)
 
 Top 20 highest salary majors with men proportion > 50% with unemployment rates:
+
 ![Top 20 highest salary majors with men proportion > 50% with unemployment rates](/university_majors/images/fig10.png)
+
+So, we can conclude that in the top 20 highly paid specializations with men rate more than 50% - 17 are engineering fields. 
+
+After the separate distribution analysis let's analyze these distributions together.
 
 Top highest salary and least unemployment rate major categories:
 ![Top highest and least unemployment rate majors](/university_majors/images/fig11.png)
@@ -95,11 +123,15 @@ Top highest salary and least unemployment rate major categories:
 Top 20 highest salary and least unemployment rate majors:
 ![Top highest and least unemployment rate majors](/university_majors/images/fig12.png)
 
+As we can conclude Petroleum Engineering is the number one champ in all categories. It is very predictable, but the question which I did not predict is that in the 21st century the median salary still could be dependent on the proportion of women or men in the field. I can only remind again that this result can be dependent on the dataset we used and for more responsible research it is needed to gather special data and design separate experiments.
+
 Top lowest salary and highest unemployment rate majors:
 ![Top highest and least unemployment rate majors](/university_majors/images/fig13.png)
 
 Top lowest salary and highest unemployment rate major categories:
 ![Top highest and least unemployment rate majors](/university_majors/images/fig14.png)
+
+And for lowes salary and highest unemployment rate major categories I do not want to highlight the best or worst fields of study, but just want to explain the approach to understand the future risks and become prepared for it. 
 
 ## Conclusion
 
