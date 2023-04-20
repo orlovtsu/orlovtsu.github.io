@@ -35,7 +35,7 @@ Technology stack:
 - Python
 - matplotlib, plotly
 - math, statistics
-- pandas, numpy                                     |
+- pandas, numpy                                    
 
 ### Part 2. Statistical Data Analysis<a name="university_majors_stat"></a> [[report](https://github.com/orlovtsu/portfolio/blob/main/university_majors_stat/)]
 
