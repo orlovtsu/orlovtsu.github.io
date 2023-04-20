@@ -1,0 +1,383 @@
+---
+output:
+title: "602 project"
+  pdf_document: default
+  html_document: default
+---
+
+# 602 Project
+
+First of all, we should load the data.
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(scales)
+library(mosaic)
+library(gridExtra)
+library(RColorBrewer)
+library(grid)
+file = 'all-ages.csv'
+df_all <- read.csv(file)
+df_all
+```
+
+```{r}
+file = 'recent-grads.csv'
+df_women <- read.csv(file)
+df_women
+```
+
+In our project, we will explore 3 main questions that will guide us through analysis. These questions will explore the unemployment rate, proportion of males vs. females, and the salary within each major category. Our guiding questions are as below: Is there a relationship between major categories and employment (full-time year-round)? 1. Is there a relationship between major categories and the unemployment rate?
+
+Creating 16 lists of dataframes for each major category
+
+```{r}
+major_categories <- unique(df_all$Major_category)
+major_list <- list()
+nsize <- list()
+i = 1
+for (category in major_categories){
+  major_list[[i]] <- df_all[df_all$Major_category == category,]
+  nsize[i] <- nrow(major_list[[i]])
+  i = i + 1
+}
+
+```
+
+To make a conclusion about the difference of salaries between different majors the next hypothesis is done:
+
+H0: There is significant difference between in the unemployment rate between major categories 
+HA: There is no significant difference between in the unemployment rate between major categories
+
+For checking the hypothesis it can be compared each major median salary with median salary of all majors. To compare these variables bootstrap can be used:
+
+
+```{r}
+nsims = 2000
+df_means <- data.frame(matrix(ncol = 2, nrow = 0))
+df_bootstrap <- data.frame(matrix(ncol = 4, nrow = 0))
+df_bootstrap_diff <- data.frame(matrix(ncol = 3, nrow = 0))
+df_all_means <- data.frame(matrix(ncol = 1, nrow = 0))
+df_diff <- data.frame(matrix(ncol = 2, nrow = 0))
+colnames(df_bootstrap) <- c('Major_category', 'Major_mean', 'Confidence_Interval_Left', 'Confidence_Interval_Right')
+colnames(df_bootstrap_diff) <- c('Major_category', 'Diff_CI_Left', 'Diff_CI_Right')
+colnames(df_means) <- c('Unemployment_rate', 'Major_category')
+colnames(df_diff) <- c('Major_category', 'Diff')
+colnames(df_all_means) <- c('Mean')
+means_unemployment_rate <- list()
+nsize_all = nrow(df_all)
+temp_all_mean <- rep(0, nsims)
+for (i in (1:nsims)) {
+      temp_all_mean[i] = mean(sample(df_all$Unemployment_rate, nsize_all, replace = TRUE)) 
+}
+df_all_means <- data.frame(temp_all_mean)
+#df_all_means
+values_diff <- numeric(0)
+groups <- numeric(0)
+for (j in c(1:length(major_categories))){
+    temp_mean <- rep(0, nsims)
+    temp_diff <- rep(0, nsims)
+    category = major_categories[j]
+    for (i in (1:nsims)) {
+      temp_mean[i] = mean(sample(df_all[df_all$Major_category == category, ]$Unemployment_rate, nsize[[j]], replace = TRUE))
+      temp_diff[i] = temp_mean[i] - temp_all_mean[i]
+    }
+   df_means <- c(category, data.frame(temp_mean))
+   values_diff <- c(values_diff, temp_diff)
+   groups <- c(groups, rep(category, nsims))
+   conf_int <- qdata(temp_mean, c(0.025, 0.975), data=df_means)
+   conf_int_diff <- qdata(temp_diff, c(0.025, 0.975), data.frame(temp_diff))
+   real_mean <- mean(temp_mean)
+   df_bootstrap[nrow(df_bootstrap) + 1, ] <- c(category, real_mean, conf_int[[1]], conf_int[[2]])
+   df_bootstrap_diff[nrow(df_bootstrap_diff) + 1, ] <- c(category, conf_int_diff[[1]], conf_int_diff[[2]])
+}
+df_diff <- data.frame(values_diff, groups)
+print('Bootstrap confidence intervals for the unemployment rate')
+```
+
+```{r}
+df_bootstrap
+```
+```{r fig.width=20,fig.height=6}
+
+p1 <- ggplot(df_diff[df_diff$groups == major_categories[1], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "#00BFC4", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[1]) + theme(text = element_text(size = 12))  
+p2 <- ggplot(df_diff[df_diff$groups == major_categories[2], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "#619CFF", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[2])+ theme(text = element_text(size = 12))  
+p3 <- ggplot(df_diff[df_diff$groups == major_categories[3], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "#C77CFF", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[3])+ theme(text = element_text(size = 12))  
+p4 <- ggplot(df_diff[df_diff$groups == major_categories[4], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "#E76BF3", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[4])+ theme(text = element_text(size = 12))  
+p5 <- ggplot(df_diff[df_diff$groups == major_categories[5], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "yellow", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[5])+ theme(text = element_text(size = 12))  
+p6 <- ggplot(df_diff[df_diff$groups == major_categories[6], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "blue", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[6])+ theme(text = element_text(size = 12))  
+p7 <- ggplot(df_diff[df_diff$groups == major_categories[7], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "red", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[7])+ theme(text = element_text(size = 12))  
+p8 <- ggplot(df_diff[df_diff$groups == major_categories[8], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "pink", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[8])+ theme(text = element_text(size = 12))  
+p9 <- ggplot(df_diff[df_diff$groups == major_categories[9], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "green", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[9])+ theme(text = element_text(size = 12))  
+p10 <- ggplot(df_diff[df_diff$groups == major_categories[10], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "purple", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[10])+ theme(text = element_text(size = 12))  
+p11 <- ggplot(df_diff[df_diff$groups == major_categories[11], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "black", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[11])+ theme(text = element_text(size = 12))  
+p12 <- ggplot(df_diff[df_diff$groups == major_categories[12], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "darkgrey", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[12])+ theme(text = element_text(size = 12))  
+p13 <- ggplot(df_diff[df_diff$groups == major_categories[13], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "darkgreen", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[13])+ theme(text = element_text(size = 12))  
+p14 <- ggplot(df_diff[df_diff$groups == major_categories[14], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "magenta", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[14])+ theme(text = element_text(size = 12))  
+p15 <- ggplot(df_diff[df_diff$groups == major_categories[15], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "cyan", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[15])+ theme(text = element_text(size = 12))  
+p16 <- ggplot(df_diff[df_diff$groups == major_categories[16], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "brown", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[16])+ theme(text = element_text(size = 12))  
+p <- grid.arrange(p1, p2, p3, p4,
+             p5, p6, p7, p8,
+             p9, p10, p11, p12,
+             p13, p14, p15, p16, ncol = 4)
+g <- arrangeGrob(p1, p2, p3, p4,
+             p5, p6, p7, p8,
+             p9, p10, p11, p12,
+             p13, p14, p15, p16, ncol = 8)
+ggsave(file = "diff1.png", g)
+#ggplot(df_diff, aes(x = values_diff, fill = groups)) + geom_histogram(position = "identity", alpha = 0.2, bins = 50) 
+#df_diff
+#values_diff
+```
+
+Bootstrap confidence intevals for differences of the mean unemployment rate and unemployment rate by category
+
+```{r}
+pvalue = numeric(16)
+for (j in c(1:length(major_categories))){
+  category = major_categories[j]
+  pvalue[j] = t.test(df_diff[df_diff$groups == category,]$values_diff, mu=0, alternative="two.sided", data=df_diff)[[3]]
+  print(pvalue[j])
+}
+
+df_bootstrap_diff$`P-value` <- pvalue
+head(df_bootstrap_diff, 16)
+```
+As we can see, in most of major_categories the population mean does not hit into the confidence interval. We can conclude that our null hypothesis is not rejected. All major categories has their own unemployment rates.
+
+To find if we can confidence to these data and understand the type of distributions we can create Normal Probability Plots for each difference distribution
+
+```{r fig.width=20,fig.height=10}
+
+p1 <- ggplot(df_diff[df_diff$groups == major_categories[1], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[1]) + theme(text = element_text(size = 20))
+p2 <- ggplot(df_diff[df_diff$groups == major_categories[2], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[2]) + theme(text = element_text(size = 20)) 
+p3 <- ggplot(df_diff[df_diff$groups == major_categories[3], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[3]) + theme(text = element_text(size = 20))
+p4 <- ggplot(df_diff[df_diff$groups == major_categories[4], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[4]) + theme(text = element_text(size = 20))
+p5 <- ggplot(df_diff[df_diff$groups == major_categories[5], ],aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[5]) + theme(text = element_text(size = 20))  
+p6 <- ggplot(df_diff[df_diff$groups == major_categories[6], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[6]) + theme(text = element_text(size = 20))
+p7 <- ggplot(df_diff[df_diff$groups == major_categories[7], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[7]) + theme(text = element_text(size = 20))  
+p8 <- ggplot(df_diff[df_diff$groups == major_categories[8], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[8]) + theme(text = element_text(size = 20))  
+p9 <- ggplot(df_diff[df_diff$groups == major_categories[9], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[9]) + theme(text = element_text(size = 20))  
+p10 <- ggplot(df_diff[df_diff$groups == major_categories[10], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[10]) + theme(text = element_text(size = 20))  
+p11 <- ggplot(df_diff[df_diff$groups == major_categories[11], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[11]) + theme(text = element_text(size = 20))
+p12 <- ggplot(df_diff[df_diff$groups == major_categories[12], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[12]) + theme(text = element_text(size = 20)) 
+p13 <- ggplot(df_diff[df_diff$groups == major_categories[13], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[13]) + theme(text = element_text(size = 20)) 
+p14 <- ggplot(df_diff[df_diff$groups == major_categories[14], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[14]) + theme(text = element_text(size = 20)) 
+p15 <- ggplot(df_diff[df_diff$groups == major_categories[15], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[15]) + theme(text = element_text(size = 20))  
+p16 <- ggplot(df_diff[df_diff$groups == major_categories[16], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[16]) + theme(text = element_text(size = 20))  
+grid.arrange(p1, p2, p3, p4,
+             p5, p6, p7, p8,
+             p9, p10, p11, p12,
+             p13, p14, p15, p16, ncol = 4,
+             top = textGrob("Normal Probability Plots",gp=gpar(fontsize=26,font=1)))
+g <- arrangeGrob(p1, p2, p3, p4,
+             p5, p6, p7, p8,
+             p9, p10, p11, p12,
+             p13, p14, p15, p16, ncol = 8)
+ggsave(file = "qqplot1.png", g)
+```
+
+To illustrate the variance of unemployment rate by major category the number of boxplots is illustrated bellow:
+
+```{r fig.width=15,fig.height=6}
+ggplot(data=df_all, aes(x = Unemployment_rate, y=Major_category, color = Major_category)) + geom_boxplot() + theme(text = element_text(size = 20)) #+stat_summary(fun.data = mean_cl_boot, geom = "errorbar",  width=0.5, linewidth=1)
+ggsave('unemployment_rate.png')
+```
+To make a conclusion about the difference of salaries between different majors the next hypothesis is done:
+
+H0: There is significant difference between in the median salary between major categories 
+HA: There is no significant difference between in the median salary between major categories
+
+For checking the hypothesis it can be compared each major median salary with median salary of all majors. To compare these variables bootstrap can be used:
+
+```{r}
+nsims = 2000
+df_means <- data.frame(matrix(ncol = 2, nrow = 0))
+df_bootstrap <- data.frame(matrix(ncol = 4, nrow = 0))
+df_bootstrap_diff <- data.frame(matrix(ncol = 3, nrow = 0))
+df_all_means <- data.frame(matrix(ncol = 1, nrow = 0))
+df_diff <- data.frame(matrix(ncol = 2, nrow = 0))
+
+colnames(df_bootstrap) <- c('Major_category', 'Mean', 'Confidence Interval Left', 'Confidence Interval Right')
+colnames(df_means) <- c('Median_salary', 'Major_category')
+colnames(df_bootstrap_diff) <- c('Major_category', 'Diff_CI_Left', 'Diff_CI_Right')
+colnames(df_diff) <- c('Major_category', 'Diff')
+colnames(df_all_means) <- c('Mean')
+means_salary_rate <- list()
+nsize_all = nrow(df_all)
+
+means_salary_rate <- list()
+temp_all_mean <- rep(0, nsims)
+for (i in (1:nsims)) {
+      temp_all_mean[i] = mean(sample(df_all$Median, nsize_all, replace = TRUE)) 
+}
+df_all_means <- data.frame(temp_all_mean)
+values_diff <- numeric(0)
+groups <- numeric(0)
+for (j in c(1:length(major_categories))){
+    temp_mean <- rep(0, nsims)
+    temp_diff <- rep(0, nsims)
+    category = major_categories[j]
+    for (i in (1:nsims)) {
+      temp_mean[i] = mean(sample(df_all[df_all$Major_category == category, ]$Median, nsize[[j]], replace = TRUE)) 
+      temp_diff[i] = temp_mean[i] - temp_all_mean[i]
+    }
+   df_means <- c(category, data.frame(temp_mean))
+   values_diff <- c(values_diff, temp_diff)
+   groups <- c(groups, rep(category, nsims))
+   conf_int <- qdata(temp_mean, c(0.025, 0.975), data=df_means)
+   conf_int_diff <- qdata(temp_diff, c(0.025, 0.975), data.frame(temp_diff))
+   real_mean <- mean(temp_mean)
+   df_bootstrap[nrow(df_bootstrap) + 1, ] <- c(category, real_mean, conf_int[[1]], conf_int[[2]])
+   df_bootstrap_diff[nrow(df_bootstrap_diff) + 1, ] <- c(category, conf_int_diff[[1]], conf_int_diff[[2]])
+
+}
+df_diff <- data.frame(values_diff, groups)
+print('Bootstrap confidence intervals for the median salary')
+```
+```{r}
+df_bootstrap
+```
+
+```{r fig.width=15,fig.height=6}
+ggplot(data=df_all, aes(x = Median, y=Major_category, color = Major_category)) + geom_boxplot() + theme(text = element_text(size = 20)) 
+#+ stat_summary(fun.data = mean_cl_boot, geom = "errorbar",  width=0.5, linewidth=1)
+ggsave('median_salary.png')
+```
+
+```{r fig.width=20,fig.height=6}
+
+p1 <- ggplot(df_diff[df_diff$groups == major_categories[1], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "#00BFC4", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[1]) + theme(text = element_text(size = 12))  
+p2 <- ggplot(df_diff[df_diff$groups == major_categories[2], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "#619CFF", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[2])+ theme(text = element_text(size = 12))  
+p3 <- ggplot(df_diff[df_diff$groups == major_categories[3], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "#C77CFF", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[3])+ theme(text = element_text(size = 12))  
+p4 <- ggplot(df_diff[df_diff$groups == major_categories[4], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "#E76BF3", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[4])+ theme(text = element_text(size = 12))  
+p5 <- ggplot(df_diff[df_diff$groups == major_categories[5], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "yellow", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[5])+ theme(text = element_text(size = 12))  
+p6 <- ggplot(df_diff[df_diff$groups == major_categories[6], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "blue", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[6])+ theme(text = element_text(size = 12))  
+p7 <- ggplot(df_diff[df_diff$groups == major_categories[7], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "red", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[7])+ theme(text = element_text(size = 12))  
+p8 <- ggplot(df_diff[df_diff$groups == major_categories[8], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "pink", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[8])+ theme(text = element_text(size = 12))  
+p9 <- ggplot(df_diff[df_diff$groups == major_categories[9], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "green", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[9])+ theme(text = element_text(size = 12))  
+p10 <- ggplot(df_diff[df_diff$groups == major_categories[10], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "purple", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[10])+ theme(text = element_text(size = 12))  
+p11 <- ggplot(df_diff[df_diff$groups == major_categories[11], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "black", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[11])+ theme(text = element_text(size = 12))  
+p12 <- ggplot(df_diff[df_diff$groups == major_categories[12], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "darkgrey", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[12])+ theme(text = element_text(size = 12))  
+p13 <- ggplot(df_diff[df_diff$groups == major_categories[13], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "darkgreen", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[13])+ theme(text = element_text(size = 12))  
+p14 <- ggplot(df_diff[df_diff$groups == major_categories[14], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "magenta", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[14])+ theme(text = element_text(size = 12))  
+p15 <- ggplot(df_diff[df_diff$groups == major_categories[15], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "cyan", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[15])+ theme(text = element_text(size = 12))  
+p16 <- ggplot(df_diff[df_diff$groups == major_categories[16], ], aes(x = values_diff, fill = groups)) + geom_histogram(fill = "brown", position = "identity", alpha = 0.2, bins = 50) + xlab(major_categories[16])+ theme(text = element_text(size = 12))  
+grid.arrange(p1, p2, p3, p4,
+             p5, p6, p7, p8,
+             p9, p10, p11, p12,
+             p13, p14, p15, p16, ncol = 4)
+g <- arrangeGrob(p1, p2, p3, p4,
+             p5, p6, p7, p8,
+             p9, p10, p11, p12,
+             p13, p14, p15, p16, ncol = 8)
+ggsave(file = "diff2.png", g)
+```
+
+
+```{r}
+
+pvalue = numeric(16)
+for (j in c(1:length(major_categories))){
+  category = major_categories[j]
+  pvalue[j] = t.test(df_diff[df_diff$groups == category,]$values_diff, mu=0, alternative="two.sided", data=df_diff)[[3]]
+}
+
+df_bootstrap_diff$`P-value` <- pvalue
+head(df_bootstrap_diff, n = 16)
+
+```
+
+```{r fig.width=10,fig.height=10}
+
+p1 <- ggplot(df_diff[df_diff$groups == major_categories[1], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[1]) + theme(text = element_text(size = 16))
+p2 <- ggplot(df_diff[df_diff$groups == major_categories[2], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[2]) + theme(text = element_text(size = 16)) 
+p3 <- ggplot(df_diff[df_diff$groups == major_categories[3], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[3]) + theme(text = element_text(size = 16))
+p4 <- ggplot(df_diff[df_diff$groups == major_categories[4], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[4]) + theme(text = element_text(size = 16))
+p5 <- ggplot(df_diff[df_diff$groups == major_categories[5], ],aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[5]) + theme(text = element_text(size = 16))  
+p6 <- ggplot(df_diff[df_diff$groups == major_categories[6], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[6]) + theme(text = element_text(size = 16))
+p7 <- ggplot(df_diff[df_diff$groups == major_categories[7], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[7]) + theme(text = element_text(size = 16))  
+p8 <- ggplot(df_diff[df_diff$groups == major_categories[8], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[8]) + theme(text = element_text(size = 16))  
+p9 <- ggplot(df_diff[df_diff$groups == major_categories[9], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[9]) + theme(text = element_text(size = 16))  
+p10 <- ggplot(df_diff[df_diff$groups == major_categories[10], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[10]) + theme(text = element_text(size = 16))  
+p11 <- ggplot(df_diff[df_diff$groups == major_categories[11], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[11]) + theme(text = element_text(size = 16))
+p12 <- ggplot(df_diff[df_diff$groups == major_categories[12], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[12]) + theme(text = element_text(size = 16)) 
+p13 <- ggplot(df_diff[df_diff$groups == major_categories[13], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[13]) + theme(text = element_text(size = 16)) 
+p14 <- ggplot(df_diff[df_diff$groups == major_categories[14], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[14]) + theme(text = element_text(size = 16)) 
+p15 <- ggplot(df_diff[df_diff$groups == major_categories[15], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[15]) + theme(text = element_text(size = 16))  
+p16 <- ggplot(df_diff[df_diff$groups == major_categories[16], ], aes(sample = values_diff)) + stat_qq(col='blue')  +   stat_qq_line(col='red') +  xlab(major_categories[16]) + theme(text = element_text(size = 16))  
+grid.arrange(p1, p2, p3, p4,
+             p5, p6, p7, p8,
+             p9, p10, p11, p12,
+             p13, p14, p15, p16, ncol = 4,
+             top = textGrob("Normal Probability Plots",gp=gpar(fontsize=26,font=1)))
+g <- arrangeGrob(p1, p2, p3, p4,
+             p5, p6, p7, p8,
+             p9, p10, p11, p12,
+             p13, p14, p15, p16, ncol = 8, 
+              top = textGrob("Normal Probability Plots",gp=gpar(fontsize=26,font=1)))
+ggsave(file = "qqplot2.png", g)
+```
+
+Table of correlation between female proportion and median salary in each category
+
+```{r}
+women_cat <- unique(df_women$Major_category)
+df_correlation = data.frame(matrix(ncol = 2, nrow = 0))
+colnames(df_correlation) = c('Major category', 'Correlation coefficient')
+for (category in women_cat){
+  df_women_cat <- df_women[df_women$Major_category == category,]
+  correlation = cor(df_women_cat$Median, df_women_cat$ShareWomen)
+  df_correlation[nrow(df_correlation) + 1,] <- c(category, correlation)
+}
+print(paste('Coefficient of correlation using data for all categories =',cor(df_women$Median, df_women$ShareWomen)))
+```
+
+Coefficient of correlation between proportion of women in major and median salary by Major group:
+```{r}
+df_correlation
+```
+
+```{r, fig.width=10,fig.height=6}
+ggplot(df_women, aes(x = ShareWomen, y = Median, col = Major_category)) + geom_point(size = 5, position="jitter") + xlab("Proportion of women") + ylab("Median Salary") + ggtitle('Median salary to Proportion of women by major') + geom_smooth(method="lm", col="red") + theme(text = element_text(size = 20))+scale_y_continuous(labels = scales::comma)
+ggsave('salary_correlation.png')
+```
+
+Fitting linear model for the relationship between median salary and proportion of women
+
+```{r}
+predict_model = lm(Median ~ ShareWomen, data = df_women)
+predict_model$coef
+```
+
+We can predict $S_{Median} = 56130.94 - 30579.83 * P_{Women}$, where S - salary, P - proportion
+Coefficient of correlation is -0.6147
+
+This model should follow two conditions to be accepted:
+1. Normal distribution of variable. For checking this condition we have to calculate residuals between each value and predicted model and use Normal probability plot for residuals to check the normality.
+2. Homoscedasticity of distribution - For each distinct value of the x-variable (the predictor variable), the y variable has the same standard deviation $\sigma$
+
+
+```{r}
+fv = predict_model$fitted.values
+res = predict_model$residuals
+diagnosticdf = data.frame(fv, res)
+ggplot(diagnosticdf, aes(sample = res)) + stat_qq(col='blue')  +  stat_qq_line(col='red') + theme(text = element_text(size = 16)) + ggtitle("Normal Probability Plot")
+ggsave('qqplot3.png')
+```
+
+
+
+To predict a homoscedasticity we plot fitted values to residuals
+
+```{r}
+ggplot(diagnosticdf, aes(x = fv, y = res)) +  geom_point(size=2, col='blue', position="jitter") + xlab("Predicted Median Salary") + ylab("Residuals") + ggtitle("Plot of Fitts to Residuals") + geom_hline(yintercept=0, color="red", linetype="dashed") + theme(text = element_text(size = 16))
+ggsave('homoscedasticity.png')
+```
+
+
+
+
+
+
