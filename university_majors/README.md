@@ -1,4 +1,5 @@
 # Project: "STUDENTS AND CHOOSING MAJORS" 
+## Part 1. Analysis using Data Visualization 
 
 Authors:
 1. [Sergey Orlov](https://www.linkedin.com/in/orlovtsu/)
