@@ -1,4 +1,4 @@
-# Project: "STUDENTS AND CHOOSING MAJORS" 
+# Project "STUDENTS AND CHOOSING MAJORS" 
 ## Part 1. Analysis using Data Visualization 
 
 Authors:
