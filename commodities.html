@@ -37,9 +37,105 @@
 						<header class="major">
 							<h2>Commodity Markets Dashboard<br />
 							</h2>
+							<a href="index.html" class="button"> &larr; Back</a>
+							<a href="https://cdashboard2.azurewebsites.net/" class="button" target=”_blank”> Dashboard</a>
+							<a href="https://github.com/orlovtsu/comm-dashboard" class="button" target=”_blank”>GitHub Repository</a>
 						</header>
 						<p>
-                            Section in development
+                            <h1 id="commodity-price-analysis-dashboard-using-dash-app-deployed-to-azure-cloud">Commodity Price Analysis Dashboard using Dash App deployed to Azure Cloud</h1>
+							<p>The Commodity Price Analysis Dashboard is a web application that provides visualizations and analysis of historical price data for various commodities. It fetches data from Yahoo Finance using the <code>yfinance</code> library and allows users to explore price trends, volume, and correlations between commodities.</p>
+							<img src="images/fulls/cdashboard.png" alt="" width = 800/>
+							<h2 id="features">Features</h2>
+							<ul>
+							<li>Interactive Candlestick Charts: The dashboard displays candlestick charts that show the open, high, low, and close prices of selected commodities over a specified time period.</li>
+							<li>Volume Charts: Users can view volume charts that represent the trading volume of selected commodities over time.</li>
+							<li>Correlation Heatmap: The application generates a correlation heatmap that shows the correlation between different commodities based on their price movements.</li>
+							<li>Date Range Selection: Users can select the start and end dates to specify the time range for data visualization.</li>
+							<li>Ticker Selection: The dashboard allows users to select specific commodities from a dropdown menu to visualize their price data.</li>
+							</ul>
+							<h2 id="technologies-used">Technologies Used</h2>
+							<ul>
+							<li>Python</li>
+							<li>Dash: A Python framework for building analytical web applications.</li>
+							<li>Plotly: A Python graphing library for interactive visualizations.</li>
+							<li>Pandas: A data manipulation library for data analysis.</li>
+							<li>Azure: Deployment app to Azure Cloud via GitHub</li>
+							</ul>
+							
+							<h2 id="installation">Installation</h2>
+							<p>To install localy follow these steps:</p>
+							<ol>
+							<li><p>Clone the repository:</p></li>
+							<pre><code class="lang-bash">git clone https:<span class="hljs-regexp">//</span>https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/orlovtsu/</span>comm-dashboard.git
+							</code></pre>
+							<li><p>Install the required dependencies:</p>
+							<pre><code class="lang-bash">pip <span class="hljs-keyword">install</span> -r requirements.txt
+							</code></pre>
+							</li>
+							<li><p>Run the app:</p>
+							<pre><code><span class="hljs-keyword">python</span> app.<span class="hljs-keyword">py</span>
+							</code></pre></li>
+							<li><p>Open a web browser and go to <a href="http://localhost:8050">http://localhost:8050</a> to access the dashboard</p>
+							</li>
+							</ol>
+							<h2 id="deployment-to-azure">Deployment to Azure</h2>
+							<p>To deploy the Commodity Price Analysis Dashboard to Azure, follow these steps:</p>
+							<ol>
+							<li><p>Create an Azure account if you don&#39;t have one already.</p>
+							</li>
+							<li><p>Install the Azure CLI by following the instructions in the <a href="https://learn.microsoft.com/en-us/cli/azure/install-azure-cli">Azure CLI documentation</a>.</p>
+							</li>
+							<li><p>Log in to your Azure account using the Azure CLI:</p>
+							</li>
+							
+							<pre><code class="lang-bash"><span class="hljs-attribute">az login</span>
+							</code></pre>
+							
+							<li>Create a new Azure Web App:</li>
+							
+							<pre><code class="lang-bash">az webapp create --<span class="hljs-built_in">name</span> &lt;app-<span class="hljs-built_in">name</span>&gt; --resource-<span class="hljs-built_in">group</span> &lt;resource-<span class="hljs-built_in">group</span>-<span class="hljs-built_in">name</span>&gt; --plan &lt;app-service-plan-<span class="hljs-built_in">name</span>&gt; --runtime <span class="hljs-string">"PYTHON|3.8"</span>
+							</code></pre>
+							<p>Replace <em><app-name></em>, <em><resource-group-name></em>, and <em><app-service-plan-name></em> with your preferred names.</p>
+							
+							<li>Set up deployment from a local Git repository:</li>
+							
+							<pre><code class="lang-bash">az webapp deployment source config-<span class="hljs-built_in">local</span>-git --<span class="hljs-built_in">name</span> &lt;app-<span class="hljs-built_in">name</span>&gt; --resource-<span class="hljs-built_in">group</span> &lt;resource-<span class="hljs-built_in">group</span>-<span class="hljs-built_in">name</span>&gt;
+							</code></pre>
+							
+							<li>Add the Azure remote repository as a Git remote:</li>
+							
+							<pre><code class="lang-bash">git remote add azure &lt;git-url-<span class="hljs-keyword">from</span>-<span class="hljs-keyword">previous</span>-<span class="hljs-keyword">step</span>&gt;
+							</code></pre>
+							
+							<li><p>Push your local repository to the Azure remote:</p>
+							<pre><code><span class="hljs-symbol">git</span> <span class="hljs-keyword">push </span>azure master
+							</code></pre></li>
+							<li><p>Wait for the deployment to finish. You can monitor the deployment status in the Azure portal or using the Azure CLI:</p>
+							<pre><code class="lang-bash"><span class="hljs-string">az </span><span class="hljs-string">webapp </span><span class="hljs-string">deployment </span><span class="hljs-built_in">list-publishing-credentials</span> <span class="hljs-built_in">--name</span> &lt;<span class="hljs-string">app-name&gt;</span> <span class="hljs-built_in">--resource-group</span> &lt;<span class="hljs-string">resource-group-</span><span class="hljs-string">name&gt;</span>
+							</code></pre>
+							</li>
+							<li><p>Once the deployment is complete, access the Commodity Price Analysis Dashboard by visiting https://<app-name>.azurewebsites.net in your web browser.</p>
+							</li>
+							</ol>
+							<p>For detailed instructions on deploying a Dash application to Azure, refer to the official <a href="https://dash.plotly.com/deployment">Dash deployment guide</a>.</p>
+							<h2 id="usage">Usage</h2>
+							<ol>
+							<li>Upon accessing the dashboard, you will see a left column displaying a list of available commodities and date range selectors.</li>
+							<li>Select a commodity from the list by clicking on its name.</li>
+							<li>Choose the start and end dates using the date pickers to define the time range for visualization.</li>
+							<li>The main section of the dashboard will display candlestick charts, volume charts, and a correlation heatmap based on your selections.</li>
+							<li>Explore the charts and heatmap by interacting with them. You can zoom in/out, pan, and hover over data points for additional information.</li>
+							</ol>
+							<h2 id="data-source">Data Source</h2>
+							<p>The price data for the commodities is fetched from Yahoo Finance using the <code>yfinance</code> library. The data is downloaded and stored in a pandas DataFrame for visualization.</p>
+							<h2 id="credits">Credits</h2>
+							<p>It is an open-source project. If you find any issues or have suggestions for improvements, please open an issue or submit a pull request</p>
+							<h2 id="license">License</h2>
+							<p>This project is licensed under the <a href="https://opensource.org/license/mit/">MIT License</a>.</p>
+							<h2 id="references">References</h2>
+							1. <a href="https://pypi.org/project/yfinance/">Yahoo Finance library for Python</a><br/>
+							2. <a href="https://dash.plotly.com/">Dash Library for Python</a><br/>
+							3. <a href="https://plotly.com/python/">Plotly Open Source Graphing Library for Python</a><br/>
 						</ul>
 					</section>
 
@@ -53,8 +149,8 @@
 					<ul class="icons">
 						<li><a href="https://www.linkedin.com/in/orlovtsu/" class="icon brands fa-linkedin"><span class="label">Twitter</span></a></li>
 						<li><a href="https://github.com/orlovtsu" class="icon brands fa-github"><span class="label">Github</span></a></li>
-<!--						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>   -->
-						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+<!--						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>  
+						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li> -->
 					</ul>
 					<ul class="copyright">
 						<li>&copy; Sergey Orlov</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>

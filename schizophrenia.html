@@ -1,0 +1,494 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Sergey Orlov</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="index.html"  class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
+					<h1><strong>I am Sergey Orlov</strong>, a Data Scientist,<br />
+					PhD in Physics and Mathematics,<br /> Data Driven Projects developer<br />
+					living in Calgary, Alberta.</h1>
+				</div>
+<!--	<div class="inner">
+					<li><a href="#" class="button">ABOUT ME</a></li>
+					<li><a href="#" class="button">PORTFOLIO</a></li>
+					<li><a href="#" class="button">CONTACT ME</a></li>
+				</div>
+-->			
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+					<section id="one">
+						<header class="major">
+							<h2>Depression Worldwide<br />
+							</h2>
+							<a href="mental_health.html" class="button"> &larr; Back</a>
+							<a href="https://github.com/orlovtsu/schizophrenia_worldwide" class="button" target=”_blank”>GitHub Repository</a>
+						</header>
+                        <br/>
+						<h1 id="project-dependence-of-schizophrenia-on-different-world-development-and-healthcare-systems-indicators-">Project &quot;Dependence of Schizophrenia on different world development and healthcare systems indicators&quot;</h1>
+<p>Authors:</p>
+<ol>
+<li><a href="https://www.linkedin.com/in/orlovtsu/">Sergey Orlov</a></li>
+<li><a href="https://www.linkedin.com/in/shrivarshini-balaji-999551188/">Shrivarshini Balaji</a></li>
+<li><a href="https://www.linkedin.com/in/niloofar-mirzadzare-280211271/">Niloofar Mirzadzare</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>Mental health constitutes our emotions and feelings and it can affect our behavior, thoughts, and coping abilities [1]. The rate of mental health disorders is on a rise worldwide, due to modern society&#39;s chronic stress, demographic factors, substance abuse, and unhealthy lifestyles [2].
+Nowadays, with less stigma, there is more recognition of the importance of mental health and how it can impact individuals in society. Schizophrenia is one type of mental health disorder that affects about 24 million individuals around the world. It is a chronic and severe mental illness that influences an individual&#39;s ability to think, feel, and behave clearly [3]. The symptoms of schizophrenia can be either positive or negative. Positive symptoms basically add, such as hallucinations, delusions, and distorted thinking or speech. Negative symptoms on the other hand can contribute to reduction. Negative symptoms can include, no emotion or motivation and social withdrawal [4]. The severity and type of symptoms can vary from person to person and can change over time. </p>
+<p>Schizophrenia is a complex mental illness and its causes can be mainly due to chemical and neurotransmitter imbalances in the brain [5]. While there is no cure for Schizophrenia, researchers are trying to enhance their understanding of the underlying mechanisms and factors leading to the illness, and thus develop more effective and safer treatment options [4]. Several factors can trigger schizophrenia and impact its severity, including genetic predisposition, environmental factors, and substance use (i.e. cannabis). Stress and trauma can also exacerbate symptoms of schizophrenia and contribute to its severity [6].</p>
+<p><img src="/images/Schizophrenia.png" alt="Distribution of schozophrenia worldwide" width=800>
+Fig 1. Distribution of schozophrenia worldwide.</p>
+<p>The distribution of schizophrenia is relatively uniform worldwide, with a prevalence of 1 in 300 (0.32%) in different regions [3]. However, significant disparities exist in access to mental health services and treatment for people with schizophrenia, especially in low- and middle-income and
+developing countries. Addressing these inequalities and ensuring that people with schizophrenia receive appropriate care and support is critical to improving outcomes and reducing the global burden of mental illness.</p>
+<p>In this project, our main goal was to perform a multiple regression analysis to further enhance our understanding of the impact of different socioeconomic factors on the prevalence of schizophrenia around the world.</p>
+<h2 id="dataset-">Dataset:</h2>
+<p>We collected our datasets in CSV format from the World Health Organization (WHO), which offers open-source data [7]. There were a total of 8 CSV files obtained from the WHO website:</p>
+<ol>
+<li>MentalHealthDisorders.csv</li>
+<li>WDIData_T.csv</li>
+<li>Beds_in_mental_health_hospitals_per_100thousands.csv</li>
+<li>Beds_for_mh_in_general_hospital_per100thousand_2019.csv</li>
+<li>Psychologists_in_mental_health_per_100thousands.csv</li>
+<li>Psychiatrists_in_mental_health.csv</li>
+<li>Social_workers_in_mental_health_per_100thousands.csv</li>
+<li>2.12_Health_systems.csv</li>
+</ol>
+<p>To measure the impact of Schizophrenia within each society, the parameter of disability-adjusted life year (DALY) per 100,000 people is utilized. The DALY parameter is employed to gauge the total burden of depression. To compare countries using this parameter, the dataset &quot;DALY” estimates WHO Member States by country. This dataset is sourced from the official World Health Organization website (<a href="http://who.int">http://who.int</a>) and may be utilized for research purposes, with proper citation [7]. The dataset includes DALY parameters for each country in the WHO for every monitored disorder, segregated by gender and age, spanning the years from 2000 to 2019.
+For our project, we will utilize the data for Schizophrenia disorder from this dataset to find the indicators based on the DALY parameter.</p>
+<p>The dataset about expenditures for the healthcare system worldwide is taken from The World Bank website [8]. This dataset contains health expenditures in percentage to Gross Domestic Product (GDP), expenditures in U.S. dollars, and expenditures in U.S. dollars per capita for 2019 by countries. This data is used in combination with the dataset &quot;Government expenditures on mental health as a percentage of total government expenditures on health (%)&quot; from the World Health Organization website [9]. By combining these data, we can analyze spending on mental health worldwide by country and the efficiency of spending on diagnostics and treatment in each healthcare system.</p>
+<p><i>R code:</i></p>
+<pre><code class="lang-{r}"># Loading libraries
+<span class="hljs-keyword">library</span>(ggplot2)
+<span class="hljs-keyword">library</span>(olsrr)
+<span class="hljs-keyword">library</span>(dplyr)
+<span class="hljs-keyword">library</span>(lmtest)
+<span class="hljs-keyword">library</span>(mctest)
+<span class="hljs-keyword">library</span>(GGally)
+<span class="hljs-keyword">library</span>(MASS)
+<span class="hljs-keyword">library</span>(stats)
+
+# Loading datasets
+mhd &lt;- <span class="hljs-keyword">read</span>.csv(<span class="hljs-string">'MentalHealthDisorders.csv'</span>)
+wdi &lt;- <span class="hljs-keyword">read</span>.csv(<span class="hljs-string">'WDIData_T.csv'</span>)
+beds_mhh_p100t &lt;- <span class="hljs-keyword">read</span>.csv(<span class="hljs-string">'beds_in_mental_health_hospitals_per_100thousands.csv'</span>)
+beds_mhg_p100t &lt;- <span class="hljs-keyword">read</span>.csv(<span class="hljs-string">'beds_for_mh_in_general_hospital_per100thousand_2019.csv'</span>)
+psycho_p100t &lt;- <span class="hljs-keyword">read</span>.csv(<span class="hljs-string">'psychologists_in_mental_health_per_100thousands.csv'</span>)
+psychi_p100t &lt;- <span class="hljs-keyword">read</span>.csv(<span class="hljs-string">'psychiatrists_in_mental_health.csv'</span>)
+sw_p100t &lt;- <span class="hljs-keyword">read</span>.csv(<span class="hljs-string">'social_workers_in_mental_health_per_100thousands.csv'</span>)
+</code></pre>
+<h2 id="methodology">Methodology</h2>
+<p>We approached this project by running a linear regression model consisting of all the chosen independent variables to predict the most significant variables. For the purpose of this project, we selected data for only 2017.</p>
+<p><br /><i>R code:</i></p>
+<pre><code class="lang-{r}">mhd &lt;- mhd<span class="hljs-string">[0:6468, ]</span>
+mhd2  &lt;- mhd<span class="hljs-string">[mhd$Year == 2017  , ]</span>
+mhd2
+</code></pre>
+<p>The entire dataset with different World Development indicator contains more than 1400 indicators. For initial hypothesis about factors which can influence to the schizophrenia rate is the indicators should be from the following groups:</p>
+<ol>
+<li>Economic factors, such as GDP, healthcare system expenditures</li>
+<li>World development indicators. such as education indicators, urbanization, social factors, environmental indicators</li>
+<li>Demographic indicators</li>
+<li>HealthCare System indicators</li>
+</ol>
+<p>At the first step it was decided to select these variables by 3 ways:</p>
+<ol>
+<li>At first, some factors were selected to check by decision to understand is there any significant correlation between schizophrenia and such factors as:</li>
+<li>GPD per capita</li>
+<li>Current health expenditure per capita</li>
+<li>Duration of education (primary and secondary)</li>
+<li><p>Urban population (number and in % of total)</p>
+</li>
+<li><p>Secondly, for checking independent and significant variables the stepwise method was implemented for World Development Indicator dataset contained of more than 1400 indicators worldwide. By this method the next factors were selected:</p>
+</li>
+<li>Primary school starting age (years)</li>
+<li>Rural population</li>
+<li>Birth rate, crude (per 1,000 people)</li>
+<li>People using at least basic drinking water services (% of population)</li>
+<li>PM2.5 air pollution, population exposed to levels exceeding WHO guideline value (% of total)</li>
+</ol>
+<p>Therefore, from dataset with World Development Indicators were selected next variables:</p>
+<p><br /><i> R code:</i></p>
+<pre><code class="lang-{r}">wdi2 = wdi[wdi<span class="hljs-variable">$Year</span> == 2017, ]
+wdi_codes &lt;- c(<span class="hljs-string">'NY.GDP.PCAP.CD'</span>,
+<span class="hljs-string">'SH.XPD.CHEX.PC.CD'</span>,
+<span class="hljs-string">'SE.PRM.DURS'</span>,
+<span class="hljs-string">'SE.SEC.DURS'</span>,
+<span class="hljs-string">'SP.URB.TOTL.IN.ZS'</span>,
+<span class="hljs-string">'SE.PRM.AGES'</span>,
+<span class="hljs-string">'EN.ATM.PM25.MC.ZS'</span>,
+<span class="hljs-string">'SP.RUR.TOTL'</span>,
+<span class="hljs-string">'SH.H2O.BASW.ZS'</span>,
+<span class="hljs-string">'SP.DYN.CBRT.IN'</span>,
+<span class="hljs-string">'SP.URB.TOTL'</span>)
+<span class="hljs-keyword">for</span> (col <span class="hljs-keyword">in</span> wdi_codes){
+  <span class="hljs-built_in">print</span>(paste(col, <span class="hljs-string">':'</span>, wdi2[wdi2<span class="hljs-variable">$IndicatorCode</span> == col, ]<span class="hljs-variable">$IndicatorName</span>[3]))
+}
+</code></pre>
+<p>Reshape World Development Indicators Data by creating separate column for each indicator.</p>
+<p><br /><i> R code:</i></p>
+<pre><code class="lang-{r}">Code1 = wdi_codes[<span class="hljs-number">1</span>]
+df_wdi = wdi2[wdi2<span class="hljs-variable">$IndicatorCode</span> == Code1, ][c(<span class="hljs-string">'CountryCode'</span>, <span class="hljs-string">'Year'</span>, <span class="hljs-string">'Value'</span>)]
+<span class="hljs-function"><span class="hljs-title">colnames</span><span class="hljs-params">(df_wdi)</span></span> &lt;- c( <span class="hljs-string">'CountryCode'</span>, <span class="hljs-string">'Year'</span>, Code1)
+<span class="hljs-keyword">for</span> (Code2 <span class="hljs-keyword">in</span> wdi_codes[<span class="hljs-number">2</span>:length(wdi_codes)])
+{
+  df2 = wdi2[wdi2<span class="hljs-variable">$IndicatorCode</span> == Code2, ][c(<span class="hljs-string">'CountryCode'</span>, <span class="hljs-string">'Year'</span>, <span class="hljs-string">'Value'</span>)]
+  colnames(df2) &lt;- c(<span class="hljs-string">'CountryCode'</span>, <span class="hljs-string">'Year'</span>, Code2)
+  df_wdi &lt;- merge(x = df_wdi, y = df2, by = c(<span class="hljs-string">'CountryCode'</span>, <span class="hljs-string">'Year'</span>), all = TRUE)
+}
+</code></pre>
+<ol>
+<li>In addition, the healthcare systems indicators were selected from official WHO datasets (<a href="https://www.who.int/data/gho/data/indicators">https://www.who.int/data/gho/data/indicators</a>) :</li>
+<li>Psychiatrists working in mental health sector (per 100,000)</li>
+<li>Psychologists working in mental health sector (per 100,000)</li>
+<li>Beds for mental health in general hospitals (per 100,000)</li>
+<li>Beds in mental hospitals (per 100,000)</li>
+</ol>
+<p>Merge these data with columns from WDI dataset and clean dataset from NA values </p>
+<p><br /><i> R code:</i></p>
+<pre><code class="lang-{r}">shizo &lt;- mhd2[c(<span class="hljs-string">'Year'</span>,<span class="hljs-string">'Code'</span>, <span class="hljs-string">'Schizophrenia....'</span>)]
+colnames(shizo) &lt;- c(<span class="hljs-string">'Year'</span>,<span class="hljs-string">'CountryCode'</span>, <span class="hljs-string">'Schizo'</span>)
+shizo$Schizo &lt;- <span class="hljs-keyword">as</span>.numeric(shizo$Schizo)
+df3 &lt;- merge(x = shizo, y = df_wdi, by = c(<span class="hljs-string">'CountryCode'</span>, <span class="hljs-string">'Year'</span>))
+df3 &lt;- na.omit(df3[ , colSums(is.na(df3))&lt;<span class="hljs-number">5</span>])
+
+df_temp &lt;- psychi_p100t[c(<span class="hljs-string">'SpatialDimValueCode'</span>, <span class="hljs-string">'Value'</span>)]
+colnames(df_temp) &lt;- c(<span class="hljs-string">'CountryCode'</span>, <span class="hljs-string">'psychi_p100t'</span>)
+df3 &lt;- merge(x = df3, y = df_temp, by = c(<span class="hljs-string">'CountryCode'</span>), all = FALSE)
+df_temp &lt;- beds_mhh_p100t[c(<span class="hljs-string">'SpatialDimValueCode'</span>, <span class="hljs-string">'Value'</span>)]
+colnames(df_temp) &lt;- c(<span class="hljs-string">'CountryCode'</span>, <span class="hljs-string">'beds_mhh_p100t'</span>)
+df3 &lt;- merge(x = df3, y = df_temp, by = c(<span class="hljs-string">'CountryCode'</span>),  all = FALSE)
+#df3 &lt;- merge(x = df3, y = df_wdi, by = c(<span class="hljs-string">'CountryCode'</span>, <span class="hljs-string">'Year'</span>), all = FALSE)
+df_temp &lt;- psycho_p100t[c(<span class="hljs-string">'SpatialDimValueCode'</span>, <span class="hljs-string">'Value'</span>)]
+colnames(df_temp) &lt;- c(<span class="hljs-string">'CountryCode'</span>, <span class="hljs-string">'psycho_p100t'</span>)
+df3 &lt;- merge(x = df3, y = df_temp, by = c(<span class="hljs-string">'CountryCode'</span>), all = FALSE)
+df_temp &lt;- beds_mhg_p100t[c(<span class="hljs-string">'SpatialDimValueCode'</span>, <span class="hljs-string">'Value'</span>)]
+colnames(df_temp) &lt;- c(<span class="hljs-string">'CountryCode'</span>, <span class="hljs-string">'beds_mhg_p100t'</span>)
+df3 &lt;- merge(x = df3, y = df_temp, by = c(<span class="hljs-string">'CountryCode'</span>),  all = FALSE)
+df3 &lt;- na.omit(df3)
+</code></pre>
+<p>For these parameters the linear model was created...:</p>
+<p><br /><i> R code:</i></p>
+<pre><code class="lang-{r}">
+dependent_variable &lt;- <span class="hljs-string">'Schizo'</span>
+independent_variables &lt;- colnames(df3[<span class="hljs-number">5</span>:length(df3)])
+formula &lt;- paste(dependent_variable, <span class="hljs-string">"~ ("</span>, paste(independent_variables, collapse=<span class="hljs-string">" + "</span>), <span class="hljs-string">')'</span>)
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(formula)</span></span>
+model &lt;- lm(formula, data = df3)
+<span class="hljs-function"><span class="hljs-title">summary</span><span class="hljs-params">(model)</span></span>
+</code></pre>
+<p>... and the stepwise regression procedure was launched:</p>
+<p><br /><i> R code:</i></p>
+<pre><code class="lang-{r}">stepwise &lt;-ols_step_both_p(model, pent = <span class="hljs-number">0.1</span>, prem = <span class="hljs-number">0.3</span>, <span class="hljs-selector-tag">details</span> = FALSE)
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(stepwise<span class="hljs-variable">$predictors</span>)</span></span>
+dependent_variable &lt;- <span class="hljs-string">'Schizo'</span>
+independent_variables &lt;- stepwise<span class="hljs-variable">$predictors</span>
+<span class="hljs-keyword">for</span> (col <span class="hljs-keyword">in</span> independent_variables){
+  print(paste(col, <span class="hljs-string">':'</span>, wdi2[wdi2<span class="hljs-variable">$IndicatorCode</span> == col, ]<span class="hljs-variable">$IndicatorName</span>[<span class="hljs-number">3</span>]))
+}
+formula2 &lt;- paste(dependent_variable, <span class="hljs-string">"~("</span>, paste(independent_variables, collapse=<span class="hljs-string">" + "</span>), <span class="hljs-string">')'</span>)
+
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(formula2)</span></span>
+model2 &lt;- lm(formula2, data = df3)
+<span class="hljs-function"><span class="hljs-title">summary</span><span class="hljs-params">(model2)</span></span>
+</code></pre>
+<p>In the result only 6 variables were selected as independent and significant: </p>
+<ul>
+<li>&quot;EN.ATM.PM25.MC.ZS : PM2.5 air pollution, population exposed to levels exceeding WHO guideline value (% of total)&quot;</li>
+<li>&quot;SH.H2O.BASW.ZS : People using at least basic drinking water services (% of population)&quot;</li>
+<li>&quot;SE.PRM.AGES : Primary school starting age (years)&quot;</li>
+<li>&quot;psycho_p100t : Psychologists working in mental health sector (per 100,000)&quot;</li>
+<li>&quot;SP.URB.TOTL : Urban population&quot;</li>
+<li>&quot;beds_mhh_p100t : Beds in mental hospitals (per 100,000)&quot;</li>
+</ul>
+<h3 id="interaction-variables-testing">Interaction variables testing</h3>
+<pre><code class="lang-{r}">model_h &lt;- lm(Schizo ~ (EN<span class="hljs-selector-class">.ATM</span><span class="hljs-selector-class">.PM25</span><span class="hljs-selector-class">.MC</span><span class="hljs-selector-class">.ZS</span> + SH<span class="hljs-selector-class">.H2O</span><span class="hljs-selector-class">.BASW</span><span class="hljs-selector-class">.ZS</span> + SE<span class="hljs-selector-class">.PRM</span><span class="hljs-selector-class">.AGES</span> + psycho_p100t + SP<span class="hljs-selector-class">.URB</span><span class="hljs-selector-class">.TOTL</span> + beds_mhh_p100t)^<span class="hljs-number">2</span>, data = df3 )
+<span class="hljs-function"><span class="hljs-title">summary</span><span class="hljs-params">(model_h)</span></span>
+</code></pre>
+<p>The testing of model with interactions showed that no one of the interactions gives significant influence, but  EN.ATM.PM25.MC.ZS:psycho_p100t gives the close to significant value and should be kept for next testing. </p>
+<h3 id="higher-order-testing">Higher order testing</h3>
+<p><img src="/images/pairs.png" alt="All pairwise combinations of variables" width=800>
+Fig. 2. All pairwise combinations of variables</p>
+<p>From the all pairwise combinations of variables there is only one variable which can be probable significant in higher order: psycho_p100k.
+Comparing the model with higher order of psycho_p100k and without we can hypothesize:<br />
+$H_0$ : Higher order term of psycho_p100k is not significant<br />
+$H_A$: Higher order of psycho_p100k is significant.<br /></p>
+<p><i>R code:</i></p>
+<pre><code class="lang-{r}">model_h &lt;- lm(Schizo ~ EN<span class="hljs-selector-class">.ATM</span><span class="hljs-selector-class">.PM25</span><span class="hljs-selector-class">.MC</span><span class="hljs-selector-class">.ZS</span> + SH<span class="hljs-selector-class">.H2O</span><span class="hljs-selector-class">.BASW</span><span class="hljs-selector-class">.ZS</span> + SE<span class="hljs-selector-class">.PRM</span><span class="hljs-selector-class">.AGES</span> + psycho_p100t + I(psycho_p100t^<span class="hljs-number">2</span>)+ SP<span class="hljs-selector-class">.URB</span><span class="hljs-selector-class">.TOTL</span> + beds_mhh_p100t + EN<span class="hljs-selector-class">.ATM</span><span class="hljs-selector-class">.PM25</span><span class="hljs-selector-class">.MC</span><span class="hljs-selector-class">.ZS</span>:psycho_p100t, data = df3 )
+<span class="hljs-function"><span class="hljs-title">summary</span><span class="hljs-params">(model_h)</span></span>
+</code></pre>
+<p>Result:</p>
+<pre><code>Call:
+lm(formula = Schizo ~ EN.ATM.PM25.MC.ZS + SH.H2O.BASW.ZS + SE.PRM.AGES + 
+    psycho_p100t + I(psycho_p100t^2) + SP.URB.TOTL + beds_mhh_p100t + 
+    EN.ATM.PM25.MC.ZS:psycho_p100t, data = df3)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+<span class="hljs-string">-0</span>.045033 <span class="hljs-string">-0</span>.010802 <span class="hljs-string">-0</span>.001732  0.009417  0.043419 
+
+Coefficients:
+                                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                     2.774e<span class="hljs-string">-01</span>  3.455e<span class="hljs-string">-02</span>   8.030 2.34e<span class="hljs-string">-11</span> ***
+EN.ATM.PM25.MC.ZS              <span class="hljs-string">-3</span>.751e<span class="hljs-string">-04</span>  1.139e<span class="hljs-string">-04</span>  <span class="hljs-string">-3</span>.293 0.001598 ** 
+SH.H2O.BASW.ZS                  8.437e<span class="hljs-string">-04</span>  1.564e<span class="hljs-string">-04</span>   5.395 9.98e<span class="hljs-string">-07</span> ***
+SE.PRM.AGES                    <span class="hljs-string">-2</span>.007e<span class="hljs-string">-02</span>  4.449e<span class="hljs-string">-03</span>  <span class="hljs-string">-4</span>.511 2.72e<span class="hljs-string">-05</span> ***
+psycho_p100t                    1.507e<span class="hljs-string">-03</span>  3.095e<span class="hljs-string">-04</span>   4.870 7.30e<span class="hljs-string">-06</span> ***
+I(psycho_p100t^2)              <span class="hljs-string">-3</span>.053e<span class="hljs-string">-06</span>  2.302e<span class="hljs-string">-06</span>  <span class="hljs-string">-1</span>.326 0.189319    
+SP.URB.TOTL                     1.343e<span class="hljs-string">-10</span>  3.257e<span class="hljs-string">-11</span>   4.123 0.000107 ***
+beds_mhh_p100t                  2.492e<span class="hljs-string">-04</span>  6.844e<span class="hljs-string">-05</span>   3.642 0.000533 ***
+EN.ATM.PM25.MC.ZS:psycho_p100t <span class="hljs-string">-9</span>.971e<span class="hljs-string">-06</span>  2.817e<span class="hljs-string">-06</span>  <span class="hljs-string">-3</span>.540 0.000740 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.01733 on 66 degrees of freedom
+Multiple R-squared:  0.8368,    Adjusted R-squared:  0.8171 
+F-statistic: 42.31 on 8 and 66 DF,  p-value: &lt; 2.2e<span class="hljs-string">-16</span>
+</code></pre><p>The testing of higher orders for different variables showed that the higher order variables gives not sifnificant influence. Therefore, it was decided not to use any higher orders in the model</p>
+<p>The model we will test is:</p>
+<p><i>R code:</i></p>
+<pre><code>model1 &lt;- model2
+model2 &lt;- lm(Schizo ~ (EN<span class="hljs-selector-class">.ATM</span><span class="hljs-selector-class">.PM25</span><span class="hljs-selector-class">.MC</span><span class="hljs-selector-class">.ZS</span> + SH<span class="hljs-selector-class">.H2O</span><span class="hljs-selector-class">.BASW</span><span class="hljs-selector-class">.ZS</span> + factor(SE<span class="hljs-selector-class">.PRM</span><span class="hljs-selector-class">.AGES</span>) + psycho_p100t  + SP<span class="hljs-selector-class">.URB</span><span class="hljs-selector-class">.TOTL</span> + beds_mhh_p100t + EN<span class="hljs-selector-class">.ATM</span><span class="hljs-selector-class">.PM25</span><span class="hljs-selector-class">.MC</span><span class="hljs-selector-class">.ZS</span>:psycho_p100t), data = df3)
+</code></pre><p>ANOVA test for model with interaction variable:</p>
+<p><i>R code:</i></p>
+<pre><code><span class="hljs-function"><span class="hljs-title">anova</span><span class="hljs-params">(model1, model2)</span></span>
+</code></pre><p><i>Result:</i></p>
+<pre><code><span class="hljs-selector-tag">Analysis</span> <span class="hljs-selector-tag">of</span> <span class="hljs-selector-tag">Variance</span> <span class="hljs-selector-tag">Table</span>
+
+<span class="hljs-selector-tag">Model</span> 1: <span class="hljs-selector-tag">Schizo</span> ~ (<span class="hljs-selector-tag">EN</span><span class="hljs-selector-class">.ATM</span><span class="hljs-selector-class">.PM25</span><span class="hljs-selector-class">.MC</span><span class="hljs-selector-class">.ZS</span> + <span class="hljs-selector-tag">SH</span><span class="hljs-selector-class">.H2O</span><span class="hljs-selector-class">.BASW</span><span class="hljs-selector-class">.ZS</span> + <span class="hljs-selector-tag">SE</span><span class="hljs-selector-class">.PRM</span><span class="hljs-selector-class">.AGES</span> + 
+    <span class="hljs-selector-tag">psycho_p100t</span> + <span class="hljs-selector-tag">SP</span><span class="hljs-selector-class">.URB</span><span class="hljs-selector-class">.TOTL</span> + <span class="hljs-selector-tag">beds_mhh_p100t</span>)
+<span class="hljs-selector-tag">Model</span> 2: <span class="hljs-selector-tag">Schizo</span> ~ (<span class="hljs-selector-tag">EN</span><span class="hljs-selector-class">.ATM</span><span class="hljs-selector-class">.PM25</span><span class="hljs-selector-class">.MC</span><span class="hljs-selector-class">.ZS</span> + <span class="hljs-selector-tag">SH</span><span class="hljs-selector-class">.H2O</span><span class="hljs-selector-class">.BASW</span><span class="hljs-selector-class">.ZS</span> + <span class="hljs-selector-tag">factor</span>(<span class="hljs-selector-tag">SE</span><span class="hljs-selector-class">.PRM</span><span class="hljs-selector-class">.AGES</span>) + 
+    <span class="hljs-selector-tag">psycho_p100t</span> + <span class="hljs-selector-tag">SP</span><span class="hljs-selector-class">.URB</span><span class="hljs-selector-class">.TOTL</span> + <span class="hljs-selector-tag">beds_mhh_p100t</span> + <span class="hljs-selector-tag">EN</span><span class="hljs-selector-class">.ATM</span><span class="hljs-selector-class">.PM25</span><span class="hljs-selector-class">.MC</span><span class="hljs-selector-class">.ZS</span><span class="hljs-selector-pseudo">:psycho_p100t)</span>
+  <span class="hljs-selector-tag">Res</span><span class="hljs-selector-class">.Df</span>      <span class="hljs-selector-tag">RSS</span> <span class="hljs-selector-tag">Df</span> <span class="hljs-selector-tag">Sum</span> <span class="hljs-selector-tag">of</span> <span class="hljs-selector-tag">Sq</span>      <span class="hljs-selector-tag">F</span>    <span class="hljs-selector-tag">Pr</span>(&gt;<span class="hljs-selector-tag">F</span>)    
+1     68 0<span class="hljs-selector-class">.025071</span>                                  
+2     66 0<span class="hljs-selector-class">.019573</span>  2 0<span class="hljs-selector-class">.0054978</span> 9<span class="hljs-selector-class">.2693</span> 0<span class="hljs-selector-class">.0002832</span> ***
+<span class="hljs-selector-tag">---</span>
+<span class="hljs-selector-tag">Signif</span>. <span class="hljs-selector-tag">codes</span>:  0 ‘***’ 0<span class="hljs-selector-class">.001</span> ‘**’ 0<span class="hljs-selector-class">.01</span> ‘*’ 0<span class="hljs-selector-class">.05</span> ‘.’ 0<span class="hljs-selector-class">.1</span> ‘ ’ 1
+</code></pre><p>As we can see, using of interaction variable in our model is significant. For the multiple regression analysis we will use the model2 from the previous chunk.</p>
+<h3 id="multiple-regression-assumptions">Multiple regression assumptions</h3>
+<ol>
+<li>Linear Assumption</li>
+
+<p>$H_0$: there is no pattern between the residual vs. fitted values<br />
+$H_A$: there is a pattern between the residuals and the fitted values<br /></p>
+<p><i>R code:</i></p>
+<pre><code class="lang-{r}"><span class="hljs-function"><span class="hljs-title">plot</span><span class="hljs-params">(model2, which = <span class="hljs-number">1</span>)</span></span>
+</code></pre>
+<p><img src="/images/1.linear_assumprion.png" alt="Linear Assumption" width=800>
+Fig.3. Linear Assumption testing </p>
+<p><i>R code:</i></p>
+<pre><code class="lang-{r}">ggplot(<span class="hljs-name">model2</span>, aes(<span class="hljs-name">x=</span>.fitted, y=.resid)) + geom_point() + geom_smooth()+ geom_hline(<span class="hljs-name">yintercept</span> = <span class="hljs-number">0</span>)
+</code></pre>
+<p><img src="/images/1.linear_assumprion2.png" alt="Linear Assumption" width=800>
+Fig.4. Linear Assumption testing </p>
+<p>Based on the plots above, we do not detect any pattern between the residuals (errors) and the fitted values (predicted). Therefore, we FAIL to reject our null hypothesis and the linearity assumption is satisfied.</p>
+
+<li>Independence Assumption</li>
+
+<p>$H_0$: there is no significant relationship between the independent variables
+$H_A$: there is a significant relationship between the independent variables</p>
+<p><i>R code:</i></p>
+<pre><code class="lang-{r}">ggplot(<span class="hljs-name">model2</span>, aes(<span class="hljs-name">x=as</span>.numeric(<span class="hljs-name">row</span>.names(<span class="hljs-name">model</span>.frame(<span class="hljs-name">model2</span>))), y=.resid)) + geom_point() + geom_smooth()+ geom_hline(<span class="hljs-name">yintercept</span> = <span class="hljs-number">0</span>) + xlab('Number of observation') + theme(<span class="hljs-name">axis</span>.text.x = element_text(<span class="hljs-name">angle</span> = <span class="hljs-number">90</span>, vjust = <span class="hljs-number">0.5</span>, hjust=1))
+</code></pre>
+<p><img src="/images/2.independence_assumprion.png" alt="Independence Assumption" width=800>
+Fig.5. Independence Assumption testing </p>
+<p>There is no significant dependence of residuals on the number of observations. Thus, we FAIL to reject our null hypothesis, and the independence assumption is met for our model</p>
+
+<li>Normality Assumption</li>
+
+<p>$H_0$: the residuals of the model are normally distributed
+$H_A$: the residuals of the model are NOT normally distributed</p>
+<p><i>R code:</i></p>
+<pre><code class="lang-{r}">qplot(<span class="hljs-name">residuals</span>(<span class="hljs-name">model2</span>), geom=<span class="hljs-string">"histogram"</span>, binwidth = <span class="hljs-number">0.01</span>, main = <span class="hljs-string">"Histogram of residuals"</span>, xlab = <span class="hljs-string">"residuals"</span>, color=<span class="hljs-string">"red"</span>, fill=I(<span class="hljs-string">"blue"</span>))
+</code></pre>
+<p><img src="/images/3.normality_assumprion.png" alt="Normality Assumption" width=800>
+Fig.6. Histogram of residuals for checking normality assumptions</p>
+<p><i>R code:</i></p>
+<pre><code class="lang-{r}">ggplot(<span class="hljs-name">df3</span>, aes(<span class="hljs-name">sample=model2</span>$residuals)) + stat_qq() + stat_qq_line()
+</code></pre>
+<p><img src="/images/3.normality_assumprion_qqplot.png" alt="QQplot" width=800>
+Fig.7. Q-Q plot used for checking normality assumption</p>
+<p>Based on the histogram in Figure 5, the residual distribution seems to follow a normal distribution. Additionally, the Q-Q plot also shows that the data are distributed close to the diagonal reference line. The graphs above suggest that the normality assumption is met. To further check the assumption, the Shapiro-Wilk normality test was performed:</p>
+<p><i>R code:</i></p>
+<pre><code class="lang-{r}"><span class="hljs-selector-tag">shapiro</span><span class="hljs-selector-class">.test</span>(<span class="hljs-selector-tag">residuals</span>(<span class="hljs-selector-tag">model2</span>))
+</code></pre>
+<p><i>Result:</i></p>
+<pre><code>    <span class="hljs-type">Shapiro</span>-<span class="hljs-type">Wilk</span> normality test
+
+<span class="hljs-class"><span class="hljs-keyword">data</span>:  residuals(<span class="hljs-title">model2</span>)</span>
+<span class="hljs-type">W</span> = <span class="hljs-number">0.98202</span>, p-value = <span class="hljs-number">0.3653</span>
+</code></pre><p>Since our p-value is greater than the significance level (0.05), we FAIL to reject our null hypothesis and conclude that the normality assumption is satisfied.</p>
+
+<li>Equal Variance Assumption (homoscedasticity)</li>
+
+<p>$H_0$: the residual variance is constant across the predictor variables
+$H_A$: the residual variance is NOT constant across the predictor variables.</p>
+<p><img src="/images/4.equal_variance_assumprion.png" alt="Homoscedasticity" width=800>
+Fig.8. Equal variance assumption using residual vs. fitted plot</p>
+<p>Based on the residual plot above, we do not detect any pattern for residual distribution. 
+Additionally, the studentized Breusch-Pagan test resulted:</p>
+<p><i>R code:</i></p>
+<pre><code class="lang-{r}"><span class="hljs-function"><span class="hljs-title">bptest</span><span class="hljs-params">(model2)</span></span>
+</code></pre>
+<p><i>Result:</i></p>
+<pre><code>    studentized Breusch-Pagan test
+
+data:  model2
+<span class="hljs-attr">BP</span> = <span class="hljs-number">11.966</span>, <span class="hljs-attr">df</span> = <span class="hljs-number">8</span>, <span class="hljs-attr">p-value</span> = <span class="hljs-number">0.1527</span>
+</code></pre><p>Based on the residuals plot and Breusch-Pagan test we FAIL to reject our null hypothesis. Therefore, the equal variance assumption (homoscedasticity).
+is also satisfied.</p>
+
+<li>Multicollinearity - Variance Inflation Factor</li>
+
+<p>$H_0$: there is no collinearity detected in the model
+$H_A$: collinearity is detected in model</p>
+<p>To test the multicollinearity we calculate Variance Inflation Factors.</p>
+<p><i>R code:</i></p>
+<pre><code class="lang-{r}">imcdiag(model2, <span class="hljs-function"><span class="hljs-keyword">method</span>="<span class="hljs-title">VIF</span>")</span>
+</code></pre>
+<p><i>Result:</i></p>
+<pre><code>Call:
+<span class="hljs-function"><span class="hljs-title">imcdiag</span><span class="hljs-params">(mod = model2, method = <span class="hljs-string">"VIF"</span>)</span></span>
+
+
+ VIF Multicollinearity Diagnostics
+
+                                  VIF detection
+EN<span class="hljs-selector-class">.ATM</span><span class="hljs-selector-class">.PM25</span><span class="hljs-selector-class">.MC</span><span class="hljs-selector-class">.ZS</span>              <span class="hljs-number">1.9957</span>         <span class="hljs-number">0</span>
+SH<span class="hljs-selector-class">.H2O</span><span class="hljs-selector-class">.BASW</span><span class="hljs-selector-class">.ZS</span>                 <span class="hljs-number">1.3279</span>         <span class="hljs-number">0</span>
+<span class="hljs-function"><span class="hljs-title">factor</span><span class="hljs-params">(SE.PRM.AGES)</span></span><span class="hljs-number">6</span>           <span class="hljs-number">6.1204</span>         <span class="hljs-number">0</span>
+<span class="hljs-function"><span class="hljs-title">factor</span><span class="hljs-params">(SE.PRM.AGES)</span></span><span class="hljs-number">7</span>           <span class="hljs-number">5.8766</span>         <span class="hljs-number">0</span>
+psycho_p100t                   <span class="hljs-number">9.7889</span>         <span class="hljs-number">0</span>
+SP<span class="hljs-selector-class">.URB</span><span class="hljs-selector-class">.TOTL</span>                    <span class="hljs-number">1.1043</span>         <span class="hljs-number">0</span>
+beds_mhh_p100t                 <span class="hljs-number">1.1796</span>         <span class="hljs-number">0</span>
+EN<span class="hljs-selector-class">.ATM</span><span class="hljs-selector-class">.PM25</span><span class="hljs-selector-class">.MC</span><span class="hljs-selector-class">.ZS</span>:psycho_p100t <span class="hljs-number">8.7863</span>         <span class="hljs-number">0</span>
+
+NOTE:  VIF Method Failed to detect multicollinearity
+
+
+<span class="hljs-number">0</span> --&gt; COLLINEARITY is not detected by the test
+</code></pre><p>Based on the VIF method in R, collinearity was NOT detected by the test. Therefore, we FAIL to
+reject a null hypothesis, and there is no multicollinearity in our model.</p>
+
+<li>Outliers</li>
+</ol>
+<p>$H_0$: there are no influential outliers in the model
+$H_A$: there are one or more influential outliers in the model</p>
+<p><i>R code:</i></p>
+<pre><code class="lang-{r}">plot(<span class="hljs-name">model2</span>, which = c(<span class="hljs-number">4</span>))
+</code></pre>
+<p><img src="/images/6.outliers.png" alt="Cook&#39;s distances" width=800>
+Fig.9. Cook&#39;s distances</p>
+<p><i>R code:</i></p>
+<pre><code class="lang-{r}">lev1=hatvalues(<span class="hljs-name">model2</span>)
+p = length(<span class="hljs-name">coef</span>(<span class="hljs-name">model2</span>))
+n = nrow(<span class="hljs-name">df3</span>)
+plot(<span class="hljs-name">row</span>.names(<span class="hljs-name">model</span>.frame(<span class="hljs-name">model2</span>)),lev1, main = <span class="hljs-string">"Leverage"</span>, xlab=<span class="hljs-string">"observation"</span>, ylab = <span class="hljs-string">"Leverage Value"</span>)
+abline(<span class="hljs-name">h</span> = <span class="hljs-number">2</span> *p/n, lty = 1)
+abline(h = 3 *p/n, lty = <span class="hljs-number">1</span>)
+</code></pre>
+<p><img src="/images/6.leverage.png" alt="Leverage plot" width=800>
+Fig.10. Leverage plot</p>
+<p>Based on the graphs above and calculations of Cook’s distances, there seem to be no influential outliers as Cook’s distance for the data points falls under Therefore, we FAIL to reject our null hypothesis and the last assumption (outliers) was also satisfied.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this project, we attempted to build a model that predicts the dependence of schizophrenia prevalence on socioeconomic factors. Based on our analysis, we found the best schizophrenia model to be dependent on the following indicators</p>
+<p><i>R code:</i></p>
+<pre><code class="lang-{r}"><span class="hljs-function"><span class="hljs-title">summary</span><span class="hljs-params">(model2)</span></span>
+</code></pre>
+<p><i>Result:</i></p>
+<pre><code>
+Call:
+lm(formula = Schizo ~ (EN.ATM.PM25.MC.ZS + SH.H2O.BASW.ZS + factor(SE.PRM.AGES) + 
+    psycho_p100t + SP.URB.TOTL + beds_mhh_p100t + EN.ATM.PM25.MC.ZS:psycho_p100t), 
+    data = df3)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+<span class="hljs-string">-0</span>.043409 <span class="hljs-string">-0</span>.009767 <span class="hljs-string">-0</span>.001984  0.010884  0.043904 
+
+Coefficients:
+                                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                     1.895e<span class="hljs-string">-01</span>  2.148e<span class="hljs-string">-02</span>   8.822 9.01e<span class="hljs-string">-13</span> ***
+EN.ATM.PM25.MC.ZS              <span class="hljs-string">-3</span>.856e<span class="hljs-string">-04</span>  1.126e<span class="hljs-string">-04</span>  <span class="hljs-string">-3</span>.424 0.001064 ** 
+SH.H2O.BASW.ZS                  8.808e<span class="hljs-string">-04</span>  1.531e<span class="hljs-string">-04</span>   5.754 2.46e<span class="hljs-string">-07</span> ***
+factor(SE.PRM.AGES)6           <span class="hljs-string">-3</span>.575e<span class="hljs-string">-02</span>  1.131e<span class="hljs-string">-02</span>  <span class="hljs-string">-3</span>.160 0.002379 ** 
+factor(SE.PRM.AGES)7           <span class="hljs-string">-5</span>.063e<span class="hljs-string">-02</span>  1.177e<span class="hljs-string">-02</span>  <span class="hljs-string">-4</span>.303 5.70e<span class="hljs-string">-05</span> ***
+psycho_p100t                    1.132e<span class="hljs-string">-03</span>  2.441e<span class="hljs-string">-04</span>   4.637 1.72e<span class="hljs-string">-05</span> ***
+SP.URB.TOTL                     1.479e<span class="hljs-string">-10</span>  3.284e<span class="hljs-string">-11</span>   4.503 2.80e<span class="hljs-string">-05</span> ***
+beds_mhh_p100t                  2.652e<span class="hljs-string">-04</span>  6.801e<span class="hljs-string">-05</span>   3.900 0.000228 ***
+EN.ATM.PM25.MC.ZS:psycho_p100t <span class="hljs-string">-9</span>.690e<span class="hljs-string">-06</span>  2.815e<span class="hljs-string">-06</span>  <span class="hljs-string">-3</span>.443 0.001004 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.01722 on 66 degrees of freedom
+Multiple R-squared:  0.8388,    Adjusted R-squared:  0.8193 
+F-statistic: 42.94 on 8 and 66 DF,  p-value: &lt; 2.2e<span class="hljs-string">-16</span>
+</code></pre><p>where:</p>
+<ul>
+<li>&quot;EN.ATM.PM25.MC.ZS : PM2.5 air pollution, population exposed to levels exceeding WHO guideline value (% of total)&quot;</li>
+<li>&quot;SH.H2O.BASW.ZS : People using at least basic drinking water services (% of population)&quot;</li>
+<li>&quot;SE.PRM.AGES : Primary school starting age (years)&quot;</li>
+<li>&quot;psycho_p100t : Psychologists working in mental health sector (per 100,000)&quot;</li>
+<li>&quot;SP.URB.TOTL : Urban population&quot;</li>
+<li>&quot;beds_mhh_p100t : Beds in mental hospitals (per 100,000)&quot;</li>
+</ul>
+<p>In the future, other socioeconomic factors can be included to improve the adjusted R-squared value and the model overall. However, the model can be improved further to add other socioeconomic factors and enhance the model’s predictive power. By incorporating more variables, the model captures a broader range of factors that can contribute to Schizophrenia&#39;s prevalence, leading to a more accurate and comprehensive prediction</p>
+<h2 id="gratitudes">Gratitudes</h2>
+<p>I would like to special thank <a href="https://www.linkedin.com/in/quanlong/">Dr. Quan Long </a> and <a href="https://www.linkedin.com/in/mjamesmccurdy/">Dr. James McCurdy</a> for the very useful feedback and great insights I received from the course and my project partners <a href="https://www.linkedin.com/in/shrivarshini-balaji-999551188/">Shrivarshini Balaji</a> and <a href="https://www.linkedin.com/in/niloofar-mirzadzare-280211271/">Niloofar Mirzadzare</a> for productive cooperation, responsibility and excellent communication.</p>
+<h2 id="references">References</h2>
+<p>[1] Centers for Disease Control and Prevention. (2021). About mental health. Centers for Disease Control and Prevention. Retrieved from <a href="https://www.cdc.gov/mentalhealth/learn/index.htm">https://www.cdc.gov/mentalhealth/learn/index.htm</a> <br />
+[2] World Health Organization. (2023). Mental health. World Health Organization. Retrieved from <a href="https://www.who.int/health-topics/mental-health#tab=tab_1">https://www.who.int/health-topics/mental-health#tab=tab_1</a> <br />
+[3] World Health Organization. (2023). Schizophrenia. World Health Organization. Retrieved from <a href="https://www.who.int/news-room/fact-sheets/detail/schizophrenia">https://www.who.int/news-room/fact-sheets/detail/schizophrenia</a><br />
+[4] American Psychiatric Association (2023). What is Schizophrenia? Retrieved from <a href="https://www.psychiatry.org/patients-families/schizophrenia/what-is-schizophrenia">https://www.psychiatry.org/patients-families/schizophrenia/what-is-schizophrenia</a><br />
+[5] Johns Hopkins Medicine (2023). Schizophrenia. Retrieved from <a href="https://www.hopkinsmedicine.org/health/conditions-and-diseases/schizophrenia">https://www.hopkinsmedicine.org/health/conditions-and-diseases/schizophrenia</a><br />
+[6] Brown AS. (2011). The environment and susceptibility to schizophrenia. Prog Neurobiol;93(1):23-58. doi: 10.1016/j.pneurobio.2010.09.003.<br />
+[7] World Health Organization. (2023). Global Health Estimates. World Health Organization. Retrieved from <a href="https://www.who.int/data/global-health-estimates">https://www.who.int/data/global-health-estimates</a><br />
+[8] The World Bank. (2017). World development indicators: The World Bank. World Development Indicators. Retrieved from: <a href="http://wdi.worldbank.org/table/2.12#">http://wdi.worldbank.org/table/2.12#</a><br />
+[9] World Health Organization. (2023). Government expenditures on mental health as a percentage of total government expenditures on Health (%). World Health Organization. Retrieved from: <a href="https://www.who.int/data/gho/data/indicators/indicator-details/GHO/government-expenditures-on-mental-health-as-a-percentage-of-total-government-expenditures-on-health-(-">https://www.who.int/data/gho/data/indicators/indicator-details/GHO/government-expenditures-on-mental-health-as-a-percentage-of-total-government-expenditures-on-health-(-</a>)<br /></p>
+
+					</section>
+
+				<!-- -->
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/orlovtsu/" class="icon brands fa-linkedin"><span class="label">Twitter</span></a></li>
+						<li><a href="https://github.com/orlovtsu" class="icon brands fa-github"><span class="label">Github</span></a></li>
+<!--						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>  
+						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li> -->
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Sergey Orlov</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

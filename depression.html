@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Sergey Orlov</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="index.html"  class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
+					<h1><strong>I am Sergey Orlov</strong>, a Data Scientist,<br />
+					PhD in Physics and Mathematics,<br /> Data Driven Projects developer<br />
+					living in Calgary, Alberta.</h1>
+				</div>
+<!--	<div class="inner">
+					<li><a href="#" class="button">ABOUT ME</a></li>
+					<li><a href="#" class="button">PORTFOLIO</a></li>
+					<li><a href="#" class="button">CONTACT ME</a></li>
+				</div>
+-->			
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+					<section id="one">
+						<header class="major">
+							<h2>Depression Worldwide<br />
+							</h2>
+							<a href="mental_health.html" class="button"> &larr; Back</a>
+							<a href="https://github.com/orlovtsu/depression_worldwide" class="button" target=”_blank”>GitHub Repository</a>
+						</header>
+                        <br/>
+						<h2>Authors:</h2>
+                        <ol>
+                        <li><a href="https://www.linkedin.com/in/orlovtsu/">Sergey Orlov</a></li>
+                        <li><a href="https://www.linkedin.com/in/shrivarshini-balaji-999551188/">Shrivarshini Balaji</a></li>
+                        <li><a href="https://www.linkedin.com/in/niloofar-mirzadzare-280211271/">Niloofar Mirzadzare</a></li>
+                        </ol>
+                        <h2 id="introduction">Introduction</h2>
+                        <p>Mental health, which affects behavior and coping abilities, is crucial, and depression is a prevalent mental illness worldwide [1]. Depression&#39;s symptoms include persistent sadness, loss of interest, and other complex causes like genetics, lifestyle choices, and major life events, and it can result in functional disabilities and suicidal behavior. Due to modern society&#39;s chronic stress, substance abuse, and unhealthy lifestyles, depression rates are on the rise, necessitating an examination of diagnostic and treatment options [2].</p>
+                        <p>First of all we will compare the prevalence of depression Worldwide and how can be calculated the burden of depression on society and economics.
+                        We also discuss how can different countries work with the depression rate and how the decrease the burden of this mental disorder.</p>
+                        <h2 id="methodology">Methodology</h2>
+                        <p>For this project, we aim to use SQL to extract data and create visualizations in python. We will first connect our datasets to SQL. Subsequently, we will write SQL queries (requests) to extract data needed for visualizations and perform any necessary data cleaning/wrangling (i.e. removing missing values, merging tables, etc.). Finally, we fetch our data from the SQL databases into pandas data frames and create relevant visualizations using plotly.</p>
+                        <h2 id="datasets">Datasets</h2>
+                        <p>People all around the world experience mental health issues, and different countries address these problems in different ways for various reasons. In the first question, we examine the distribution of people with depression worldwide, based on 3 datasets. </p>
+                        <p>The &quot;Global Trends in Mental Health Disorder&quot; dataset is sourced from Kaggle [3] and is available for use with citations of the dataset author [4]. It contains informative data from countries worldwide, covering the prevalence of mental health disorders such as schizophrenia, bipolar disorder, eating disorders, anxiety disorders, drug use disorders, depression, and alcohol use disorders from 1990 to 2017. We utilize data from the final year of the dataset to determine the percentage of people suffering from depression in each country.</p>
+                        <p>To measure the impact of depression within each society, the parameter of disability-adjusted life year (DALY) per 100,000 people is utilized. The DALY parameter is employed to gauge the total burden of depression. To compare countries using this parameter, the dataset &quot;DALY” estimates WHO Member States by country. This dataset is sourced from the official World Health Organization website (<a href="http://who.int">http://who.int</a>) and may be utilized for research purposes, with proper citation [5]. The dataset includes DALY parameters for each country in the WHO for every monitored disorder, segregated by gender and age, spanning the years from 2000 to 2019. For our project, we will be utilizing the data for depression disorder from this dataset to compare countries based on the DALY parameter.</p>
+                        <p>The dataset about expenditures for the healthcare system worldwide is taken from The World Bank website [6]. This dataset contains health expenditures in percentage to GDP, expenditures in U.S. dollars, and expenditures in U.S. dollars per capita for 2019 by countries. This data is used in combination with the dataset &quot;Government expenditures on mental health as a percentage of total government expenditures on health (%)&quot; from the World Health Organization website [7]. By combining these data, we can analyze spending on mental health worldwide by country and the efficiency of money spent on diagnostics and treatment in each healthcare system.</p>
+                        <h2 id="jupyter-notebook">Jupyter Notebook</h2>
+                        <p>The project jupyter notebook with Python Code and SQL queries is provided in file: <a href="https://github.com/orlovtsu/depression_worldwide/blob/main/depression_worldwide.ipynb">https://github.com/orlovtsu/depression_worldwide/blob/main/depression_worldwide.ipynb</a></p>
+                        <p>The database credentials are not provided because of safety, but anyone who want to reuse this code can use it with own database. I used MySQL database on AWS instance. </p>
+                        <h2 id="results">Results</h2>
+                        <h3 id="1-countries-by-proportion-of-people-with-depression-a-name-q-1-a-">1. Countries by proportion (%) of people with depression <a name="q-1"></a></h3>
+                        <p>To compare different countries by proportion of people with depression we are going to create a World Map with countries filled by color of different intensity. For the whole project we take the data on 2017 year. To make this Map we need to get dataframe with name of countries and the depression proportion in each country in 2017. </p>
+                        <p><img src="/images/Depression%20worldwide.png" alt="Depression Worldwide" width = 800></p>
+                        <p>As we can see from the picture of distribution of diagnosed depression worldwide, the depression rate is highest in most developed countries such as U.S, Canada, Europe, Australia etc. But this is the rate which shows the rate of diagnosed depression. There is the probability of higher hidden depression rate in other countries. But the more important parameter to consider is the value of burden of economics and society. This parameter is called DALY (disability-adjusted life years).</p>
+                        <h2 id="2-daly-caused-by-the-depression-by-country-a-name-q-2-a-">2. DALY caused by the depression by country <a name="q-2"></a></h2>
+                        <p>To measure the impact of depression within each society, the parameter of disability-adjusted life year (DALY) per 100,000 people is utilized. So, to understand the total burden of depression on each society we want to consider the distribution of DALY worldwide. The distribution will be in different plots such as World Map with countries filled by color depending on the DALY parameter and scatterplot DALY-Depression proportion. </p>
+                        <p><img src="/images/daly.png" alt="DALY worldwide" width = 800></p>
+                        <p>The distribution of DALY worldwide shows that countries which have higher burden of depression on thier society and economics are different than countries with higher diagnosed depression. It means that our hypothesis about hidden depression influence can be significant. Let&#39;s consider the correlation between Depression and DALY rates.</p>
+                        <p><img src="/images/DALY_depression.png" alt="Depression-DALY" width = 800></p>
+                        <p>As we can see from the scatterplot of DALY per 100,000 people and Depression rate, there is a corelation between these rates. As depression rate increases the rate of DALY increases too, but this increasement is different depending on different countries. It may be interesting what parameters influence on the DALY comparing different countries. To compare we use the parameters of different Health Systems and expenditures on Health Systems.</p>
+                        <h2 id="3-depression-depending-on-healthcare-system-expenditures-and-affordability-of-mental-health-help-by-country">3. Depression depending on HealthCare system expenditures and affordability of mental health help by country</h2>
+                        <p>To find any dependence of the depression disorder on health care system parameters we decided to check if there are any significant dependencies between the depression proportion by country and such parameters as affordability of menthal health beds in general clinics, beds in mental health clinics, numbers of psychoterapists, number of phycologist, number of social workers and diffrerent economic factors. </p>
+                        <p>The dependencies will be checked by different scatter plots. </p>
+                        <p><img src="/images/Depression_beds.png" alt="Depression - Beds in mental health hospitals per 100,000 people" width = 800></p>
+                        <p>The circle sizes and color of points on the scatterplot of Depression rate on the number of beds in mental health hospitals are the rate of DALY. As we can see from the plot there is dependence of Depression rate on the number of beds. As the number of beds in mental health hospitals increases the rate of depression faults. And we can see that most countries in the left part of the plot are most developed countries which pays a lot of attention to health system and mental health diagnostics.</p>
+                        <p><img src="/images/Depression_psychi.png" alt="Depression - Number of psychiatrists per 100,000 people" width = 800></p>
+                        <p>From the scatterplot of Depression rate on the Number of psychiatrists per 100,000 people we can see the similar result. As the number of psychiatrists increase the depression rate faults. If countries invest their efforts to create more job positions for psychiatrists, the average rate of depression faults. Let&#39;s consider the same dependencies for DALY parameter.</p>
+                        <p><img src="/images/DALY_beds.png" alt="DALY - Beds in mental health hospitals per 100,000 people" width = 800></p>
+                        <p>As we can see from this scatter plot, the correlation of DALY is the same as the Depression rate. As the number of beds in mental health hospitals increase the rate of DALY decreases.</p>
+                        <p><img src="/images/DALY_psychi.png" alt="DALY - Number of psychiatrists per 100,000 people" width = 800></p>
+                        <p>From the DALY per 100,000 people and number of psyciatrists per 100,000 people scatter plot we can see the same pictrure. So, we can conclude that these two parameters: beds in mental health and number of psychiatrists are very significant for the depression rates and DALY.</p>
+                        <h2 id="4-distribution-of-daly-and-depressed-people-of-expenditures-by-country-a-name-q-4-a-" width = 800>4. Distribution of DALY and % depressed people of expenditures by country <a name="q-4"></a></h2>
+                        <p>To understand the dependence on economic factors we will use the same methods as scatterplots, bargraphs, boxplots and linear regression. Different economic factors we use are health ependitures by country in percentage on GDP, the proportion of goverment and personal expenditures on health, health expenditures per capita. For this task we use data of 2016 because it is the year of expenditures which is previous to 2017 when we check the depression disorder. So, we the average effect of efforts and expenditures in 2016 can be checked in 2017.</p>
+                        <p>To understand how effective different countries diagnose and treat the depression we want to check the dependencies between DALY and % of depressed people on health expenditures per capita. All data we need to create such scaterplots and other graphs we already have, but some of these data has null values which we want to delete from our dataframe.</p>
+                        <p><img src="/images/Depression_HealthExp.png" alt="Depression rate vs Health expenditures" width = 800></p>
+                        <p>From the scatterplot of Depression rate on Health expenditures as % of GDP we can see that most developed countries spent more money for health, which helps to diagnose more depressed people. If countries know that thay have more depressed people, they can understand how to struggle with it.</p>
+                        <p><img src="/images/DALY_HealthExp.png" alt="DALY vs Health expenditures"width = 800 ></p>
+                        <p>From the scatter plot of DALY per 100,000 people vs Depression rate we can conclude that most developed countries spent more money to health systems, have higher rate of depression, but because of they pay more attention to health sector, especially to mental health sector, they have less rate of DALY.</p>
+                        <p><img src="/images/DALY_depression2.png" alt="DALY vs Depression" width = 800></p>
+                        <h2 id="conclusion">Conclusion</h2>
+                        <p>The following key thesises can be fomulated:</p>
+                        <ol>
+                        <li>First of all, depression is a widely distributed disorder worldwide, expecially in developed countries with high GDP per capita and high health expenditures per capita. This paradox can be explained by a large amount of attention to the disorder and higher rate of depression diagnostics. This is why countires with higher expenditures for health have a higher rate of depression.</li>
+                        <li>The influence of depression on society and economy can be calculated in DALY per 100,000 and DALY is distributed worldwide not consistently. </li>
+                        <li>The higher expenditures are significant to the decrease of DALY per 100,000 people in such countries. We can conclude, that if any country spent high amount of money to health system, thay will have higher number of diagnosted depression, but the burden of depression for this economy and society will be compensated.</li>
+                        <li>Beds in mental health hospitals per 100,000 people and the number of psyciatrists per 100,000 people are important to decrease both factors: the proportion of depression and DALY. </li>
+                        <li>Experience in diagnostics and treatment of some successful countries can be explored to be spread to the worldwide.</li>
+                        </ol>
+                        <p>Considering the high prevalence and significance of depression, it is vital to explore effective treatment methods used as we will discuss in Northern European countries such as Denmark, Sweden, and Norway in the next section. Moreover, improved diagnostic methods are crucial in the effective management and treatment of depression. We will discuss a diagnostic method used in the USA to aid in modern diagnosis.</p>
+                        <h2 id="gratitudes">Gratitudes</h2>
+                        <p>I would like to special thank <a href="https://www.linkedin.com/in/tamerjarada/">Dr. Tamer Jarada</a> for the very useful feedback and great insights I received from his course and my project partners <a href="https://www.linkedin.com/in/shrivarshini-balaji-999551188/">Shrivarshini Balaji</a> and <a href="https://www.linkedin.com/in/niloofar-mirzadzare-280211271/">Niloofar Mirzadzare</a> for productive cooperation, responsibility and excellent communication.</p>
+                        <h2 id="references">References</h2>
+                        <p>[1] World Health Organization. (2021). Depression. Retrieved from:  <a href="https://www.who.int/news-room/fact-sheets/detail/depression">https://www.who.int/news-room/fact-sheets/detail/depression</a> </p>
+                        <p>[2] Hidaka, B., H. (2012). Depression as a disease of modernity: explanations for increasing prevalence. Affect Disord. 140(3):205-14. doi: 10.1016/j.jad.2011.12.036. </p>
+                        <p>[3] TheDevastator. (2022). Uncover global trends in mental health disorder. Kaggle. Retrieved from: <a href="https://www.kaggle.com/datasets/thedevastator/uncover-global-trends-in-mental-health-disorder">https://www.kaggle.com/datasets/thedevastator/uncover-global-trends-in-mental-health-disorder</a></p>
+                        <p>[4] Amit&#39;s datasets. data.world. (2022). Retrieved from: <a href="https://data.world/amitd">https://data.world/amitd</a>  </p>
+                        <p>[5] World Health Organization. (2023). Global Health Estimates. World Health Organization. Retrieved from <a href="https://www.who.int/data/global-health-estimates">https://www.who.int/data/global-health-estimates</a> </p>
+                        <p>[6] World development indicators: The World Bank. World Development Indicators | The World Bank. (2017). Retrieved from: <a href="http://wdi.worldbank.org/table/2.12#">http://wdi.worldbank.org/table/2.12#</a> </p>
+                        <p>[7] World Health Organization. (2023). Government expenditures on mental health as a percentage of total government expenditures on Health (%). World Health Organization. Retrieved from: <a href="https://www.who.int/data/gho/data/indicators/indicator-details/GHO/government-expenditures-on-mental-health-as-a-percentage-of-total-government-expenditures-on-health-(-">https://www.who.int/data/gho/data/indicators/indicator-details/GHO/government-expenditures-on-mental-health-as-a-percentage-of-total-government-expenditures-on-health-(-</a>)</p>
+                        <p>[8] Oberlander TF, Miller AR (2011). Antidepressant use in children and adolescents: Practice touch points to guide paediatricians. Paediatr Child Health.9:549-53. doi: 10.1093/pch/16.9.549. PMID: 23115493; PMCID: PMC3223889.</p>
+                        <p>[9] Devastator, T. (2023). Antidepressant use in Scandinavia. Kaggle. Retrieved from:  <a href="https://www.kaggle.com/datasets/thedevastator/antidepressant-use-in-scandinavia">https://www.kaggle.com/datasets/thedevastator/antidepressant-use-in-scandinavia</a></p>
+                        <p>[10] Liu, B., Chang, H., Peng, K., &amp; Wang, X. (2022). An end-to-end depression recognition method based on EEGNet. Frontiers in Psychiatry, 13. <a href="https://doi.org/10.3389/fpsyt.2022.864393">https://doi.org/10.3389/fpsyt.2022.864393</a> </p>
+                        <p>[11] Allen JJ, Reznik SJ. (2015). Frontal EEG Asymmetry as a Promising Marker of Depression Vulnerability: Summary and Methodological Considerations. Curr Opin Psychol. 4:93-97. doi: 10.1016/j.copsyc.2014.12.017. Epub 2015 Jan 2. PMID: 26462291; PMCID: PMC4599354.</p>
+                        <p>[12] Tiwari, S. (2022). Eeg Psychiatric Disorders Dataset. Kaggle. Retrieved from: <a href="https://www.kaggle.com/datasets/shashwatwork/eeg-psychiatric-disorders-dataset">https://www.kaggle.com/datasets/shashwatwork/eeg-psychiatric-disorders-dataset</a> </p>
+                        <p>[13] Lazygene. (2022). Visualising pre-processed EEG Data. Kaggle. Retrieved from <a href="https://www.kaggle.com/code/lazygene/visualising-pre-processed-eeg-data">https://www.kaggle.com/code/lazygene/visualising-pre-processed-eeg-data</a> </p>
+                        <p>[14] Čukić M, Stokić M, Simić S, Pokrajac D. (2020). The successful discrimination of depression from EEG could be attributed to proper feature extraction and not to a particular classification method. Cogn Neurodyn, 14(4):443-455. doi: 10.1007/s11571-020-09581-x. Epub 2020 Mar 25. PMID: 32655709; PMCID: PMC7334335.</p>
+                        <p>[15] Lesbian, gay, bisexual, transgender and Queer/questioning. Psychiatry.org - Lesbian, Gay, Bisexual, Transgender and Queer/Questioning. (2023). Retrieved from <a href="https://www.psychiatry.org/psychiatrists/diversity/education/lgbtq-patients">https://www.psychiatry.org/psychiatrists/diversity/education/lgbtq-patients</a> </p>
+
+					</section>
+
+				<!-- -->
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/orlovtsu/" class="icon brands fa-linkedin"><span class="label">Twitter</span></a></li>
+						<li><a href="https://github.com/orlovtsu" class="icon brands fa-github"><span class="label">Github</span></a></li>
+<!--						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>  
+						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li> -->
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Sergey Orlov</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
