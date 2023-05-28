@@ -16,7 +16,7 @@
 		<!-- Header -->
 			<header id="header">
 				<div class="inner">
-					<a href="#" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
+					<a href="index.html" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
 					<h1><strong>I am Sergey Orlov</strong>, a Data Scientist,<br />
 					PhD in Physics and Mathematics,<br /> Data Driven Projects developer<br />
 					living in Calgary, Alberta.</h1>
@@ -26,20 +26,164 @@
 					<li><a href="#" class="button">PORTFOLIO</a></li>
 					<li><a href="#" class="button">CONTACT ME</a></li>
 				</div>
--->			
+-->	
 			</header>
 
 		<!-- Main -->
 			<div id="main">
-
 				<!-- One -->
 					<section id="one">
+<!--						<ul class="<actions>">
+							<li><a href="index.html" class="button">MAIN PAGE</a></li>
+						</ul> -->
 						<header class="major">
-							<h2>Calgary Traffic Incident<br />
-							</h2>
+							<h2>Calgary Traffic Incidents<br /></h2>
 						</header>
 						<p>
-                            Section in development
+                            <h3>Introduction</h3>
+							This study aims to shed light on various aspects of traffic incidents in Calgary, with a specific emphasis on understanding the frequency and patterns of incidents based on different neighborhoods, time of day, and the safety concerns for pedestrians and cyclists.
+							<br /><br />
+							Calgary, as a bustling urban center, experiences its fair share of traffic incidents, impacting the lives of its residents and visitors. 
+							<br /><br />
+							One of the key guiding questions explored in the project is how the frequency of incidents differs based on the neighborhoods of Calgary. By mapping and analyzing incident data geographically, the main project aim is to identify areas that may have a higher incidence of traffic-related incidents. Understanding these neighborhood-specific variations will enable us to pinpoint areas that require targeted interventions and proactive measures to enhance safety and reduce the occurrence of incidents.
+							<br /><br />
+							Another crucial aspect investigated is how the frequency of traffic incidents in Calgary changes based on the time of day. Traffic patterns and congestion levels can vary significantly throughout the day, and understanding how incidents are influenced by these temporal factors is essential for effective traffic management. By analyzing incident data across different time intervals, it can be identified peak incident hours, assess the impact of rush hour congestion, and develop strategies to alleviate these issues during specific time periods.
+							<br /><br />
+							In addition to neighborhood and temporal analysis, the project focuses on identifying the most dangerous areas for pedestrians and cyclists in Calgary. Pedestrians and cyclists are vulnerable road users who require special attention and protection. By examining incident data involving pedestrians and cyclists, the aim is to identify high-risk areas where these road users face increased dangers. This knowledge will aid in implementing targeted safety measures, improving infrastructure, and designing initiatives to promote safer conditions for pedestrians and cyclists in Calgary.
+							<br /><br />
+							Through this data-driven approach and advanced analytical techniques, the aim is to provide evidence-based insights and actionable recommendations for traffic management authorities, urban planners, and policymakers. By answering the guiding questions mentioned above, it can be contributed to the development of effective strategies to enhance traffic safety, optimize resource allocation, and create a more pedestrian and cyclist-friendly city.
+							<br /><br />
+
+							<h3>Dataset</h3>
+							The dataset used for the <a href = "https://data.calgary.ca/Transportation-Transit/Traffic-Incidents/35ra-9556">Calgary Traffic Incidents</a> analysis in this project is obtained from the City of Calgary's official data portal, <a href = "https://data.calgary.ca">data.calgary.ca</a>. This dataset is a comprehensive archive of traffic incidents within the city, regularly updated every 10 minutes to ensure the most current information is available. It covers a substantial time span, starting from December 6, 2016, up to the present day.
+							<br /><br />
+							It's important to note that the dataset may have occasional gaps due to system or script malfunctions, which can result in missing or incomplete incident records. However, every effort is made to maintain the accuracy and completeness of the data.
+							<br /><br />
+							The dataset provides essential information about each traffic incident, including a description of the incident itself, geolocation, and address details. This information enables precise identification and mapping of incident locations. Additionally, the dataset includes the quadrant of the city where each incident occurred, allowing for further analysis and exploration of incident patterns specific to different areas within Calgary.
+							<br /><br />
+							Another crucial component of the dataset is the time of each incident, providing insights into when incidents occur throughout the day. This temporal information allows for analyzing the frequency and distribution of incidents based on different time intervals, enabling the identification of peak incident hours and temporal trends.
+							<br /><br />
+							The dataset is made available under the <a href = "https://data.calgary.ca/stories/s/Open-Calgary-Terms-of-Use/u45n-7awa" >Open Government License - City of Calgary</a>, which encourages the free use, distribution, and modification of the data while maintaining acknowledgment of the City of Calgary as the original source.
+							<br /><br />
+							It's worth noting that for more detailed information and context regarding the traffic incidents, users can refer to the Calgary Traffic Report page, which provides additional insights, updates, and relevant information related to traffic incidents in the city.
+							<br /><br />
+							By leveraging this comprehensive and regularly updated dataset, our project aims to extract meaningful insights, identify trends, and develop strategies to enhance traffic management, improve road safety, and optimize transportation systems in Calgary.
+							<br /><br />		
+							<h3>Methodology</h3>
+							<h4>1. Data Cleaning & Wrangling</h4>
+							The data cleaning step in this project involves preparing the initial dataset obtained from the City of Calgary's data portal for analysis by addressing missing or incomplete information and identifying potential issues with the dataset.
+							<br /><br />
+							The initial dataset contains 39,586 rows of data. However, approximately 35.4% of these rows do not have quadrant data, which is a crucial attribute for analyzing incident patterns across different areas of Calgary. Despite this missing information, it is observed that most of the incident descriptions contain indirect indications of the quadrant in which they occurred. This valuable information allows us to fill the gaps in the quadrant data and retain these rows for analysis, ensuring that important incident data is not lost.
+							<br /><br />
+							<img src="images/ct2_df_before.png" alt=""  height = 300/>
+							<img src="images/ct1_df_after.png" alt=""  height = 300/>
+							<br/> <br/>
+							Further investigation reveals that the gaps in quadrant data and the MODIFIED_DT column exist from March 2019 until October 2021. Notably, during the period from June 14, 2019, to September 15, 2019, there is only one row of data available. This fact suggests the possibility of data entry rule changes during that period or a potential incident that led to the loss of data. It is essential to keep this information in mind during the analysis of the results to ensure accurate interpretation and avoid any potential biases introduced by these gaps.
+							<br /><br />
+							Additionally, the initial dataset includes a column named DESCRIPTION, which provides valuable insights into the types of incidents that occur in different locations. Parsing and analyzing this column can provide a better understanding of the specific types of incidents that take place across various areas of Calgary, enabling a more comprehensive analysis of the dataset.
+							<br /><br />
+							<img src="images/ct3_itypes.png" alt=""  height = 300/>
+							<br /><br />
+							By addressing missing quadrant data, noting the gaps in the MODIFIED_DT column, and leveraging the information in the DESCRIPTION column, the data cleaning step ensures that the dataset is prepared for subsequent analysis, enabling accurate and meaningful insights into the Calgary Traffic Incidents data.
+							<br /><br />
+							<h4>2. Incident Data and Geo-spatial Data Merging</h4>
+							To gain a better understanding of the incident distribution across different neighborhoods in Calgary, an additional step was taken in the data processing pipeline. Since the initial dataset did not include the neighborhood information for each incident, the dataset was merged with the geo-spatial data of community boundaries from the City of Calgary's open data portal.
+							<br /><br />
+							The merging process involved using the latitude and longitude coordinates provided in the initial dataset to connect each incident with its corresponding neighborhood. This was achieved by utilizing the <a href = "https://geopandas.org/en/stable/docs/reference/api/geopandas.sjoin.html">sjoin</a> function from the <a href = "https://geopandas.org/en/stable/">geopandas</a> library, which performs a spatial join based on the geometry of each community boundary.
+							<br /><br />
+							By merging the incident data with the community boundary data, each incident was assigned to the specific neighborhood in which it occurred. This integration allowed for a comprehensive analysis of the incident distribution across different neighborhoods within Calgary.
+							<br /><br />
+							Following the merging process, the data was grouped by the neighborhood name and incident type. This grouping facilitated the aggregation of incidents, providing a count of each incident type within each neighborhood. As a result, a dataframe was obtained, containing the names of neighborhoods and the corresponding counts of each incident type.
+							<br /><br />
+							This enriched dataframe with neighborhood information and incident counts enables a more detailed exploration of which communities in Calgary experience a higher frequency of incidents. This information can be valuable for understanding the safety concerns and traffic patterns specific to each neighborhood, aiding in targeted interventions and resource allocation to improve traffic management and enhance safety measures.
+							<br /><br />
+							By leveraging the power of geospatial data and integrating it with the initial incident dataset, this step in the data processing pipeline contributes to a more comprehensive analysis of the incident distribution across neighborhoods in Calgary.
+							<br /><br />
+							<img src="images/ct4_communities_itypes.png" alt="" / height = 300>
+							<br /><br />
+							<h4>3. Visualization by Plotly</h4>
+							The use of the Plotly library for visualization in this project offers several advantages in terms of interactive and visually appealing representations of the data. Plotly is a powerful data visualization library that provides a range of chart types and interactive features, making it well-suited for showcasing spatial and temporal data.
+							<br /><br />
+							One of the key visualizations used is the <a href="https://plotly.github.io/plotly.py-docs/generated/plotly.express.choropleth_mapbox.html">choropleth_mapbox</a>, which is ideal for displaying geographic data such as incident distribution across neighborhoods. This chart type uses a map layout and color-coding to represent the density or intensity of a particular variable (in this case, incident counts) within different areas or regions. By leveraging Plotly's choropleth_mapbox, it becomes possible to create a visually compelling and informative representation of the incident distribution across Calgary's neighborhoods.
+							<br /><br />
+							The <a href="https://plotly.com/python-api-reference/generated/plotly.express.bar">bar chart</a> is another visualization utilized in this project. Bar charts are effective for displaying categorical data and comparing frequencies or counts across different categories. Plotly's bar chart functionality allows for interactive exploration of the data, providing users with the ability to zoom in, hover over bars for detailed information, and customize the visual appearance of the chart.
+							<br /><br />
+							<a href="https://plotly.com/python-api-reference/generated/plotly.express.density_mapbox.html">Density_mapbox</a> is a visualization tool that offers a heatmap-like representation of density patterns across a geographical area. In the context of this project, density_mapbox can be used to visualize the intensity of incidents in different neighborhoods, highlighting areas with higher incident densities. This visualization allows for a quick understanding of areas that may require more attention in terms of traffic management and safety measures.
+							<br /><br />
+							Lastly, <a href="https://plotly.com/python-api-reference/generated/plotly.express.bar_polar.html">bar_polar</a> is a chart type that can be used for visualizing cyclic or periodic data, such as incidents occurring throughout the day or year. It provides a circular representation, allowing for the exploration of patterns and trends over time. Plotly's bar_polar enables the creation of interactive and customizable polar bar charts, offering an intuitive way to analyze and compare incident frequencies within different time periods.
+							<br /><br />
+							By utilizing Plotly's diverse chart types, including choropleth_mapbox, bar, density_mapbox, and bar_polar, the visualization step in this project ensures that the analyzed data is presented in a visually engaging and informative manner. This facilitates a deeper understanding of incident patterns, time-related trends, and the spatial distribution of incidents in Calgary.
+							<br /><br />
+							<h3>Guiding Questions</h3>
+							<h4>1. How does the frequency of incidents differ based on the neighbourhoods of Calgary? </h4>
+							The question aims to understand the variation in the number of incidents across different neighborhoods in Calgary. 
+							By analyzing the incident data and considering the neighborhood information, insights can be gained into which areas experience a higher frequency of incidents and potentially require more attention in terms of traffic management and safety measures.
+							Based on the findings, it is observed that the South East of Calgary tends to have the highest number of incidents. This suggests that this area may experience more traffic-related issues compared to other neighborhoods. 
+							<br /><br />
+							<object type="text/html" data="choropleth_ct.html" height="800" width="800"></object>
+							<br /><br />
+							The specific types of incidents prevalent in this region are related to blocked lanes or roads and multi-vehicle incidents, indicating potential congestion and traffic flow challenges in this area.
+							<br/><br/>
+							<object type="text/html" data="ct5_itypes.html" height="800" width="800"></object>
+							Furthermore, the analysis reveals that several neighborhoods in the central part of Calgary have the highest number of incidents. These neighborhoods include Bridgeland/Riverside, Beltline, Downtown commercial core, Burns industrial, Alberta park/Radisson heights, among others. The concentration of incidents in these central neighborhoods may be attributed to their high population density, commercial activities, or transportation hubs, which can contribute to increased traffic volume and potential incidents.
+							<br/><br/>
+							Understanding the neighborhoods with the highest number of incidents is crucial for traffic management authorities and policymakers to prioritize resources and implement targeted interventions. By focusing on these areas, measures such as improved infrastructure, traffic flow management, and safety campaigns can be implemented to reduce incidents and enhance the overall safety of residents and commuters in Calgary.
+							<object type="text/html" data="top20.html" height="600" width="800"></object>
+							<h4>2. How does the frequency of traffic incidents in Calgary change based on the time of day?</h4>
+							<br/><br/>
+							The question  aims to explore how the number of traffic incidents varies throughout different periods of the day. 
+							By analyzing the incident data in relation to the time of occurrence, insights can be gained into the temporal patterns and peak hours of incidents in Calgary.
+							<br/><br/>
+							Based on the findings, a timeline analysis reveals two distinct rush hours during which the most traffic incidents occur. 
+							The first rush hour happens in the morning at around 8 am, likely corresponding to the peak commuting time when individuals are traveling to work or school.
+							The second rush hour occurs in the evening at around 5 pm, which aligns with the time when people typically finish work and begin their journey home. These periods of increased traffic activity and congestion contribute to a higher frequency of incidents during these specific hours.
+							<br/><br/>
+							Morning Rush Hour:
+							<object type="text/html" data="morning_total.html" height="600" width="800"></object>
+
+							Evening Rush Hour:
+							<object type="text/html" data="evening_total.html" height="600" width="800"></object>
+							<br/><br/>
+							Furthermore, the analysis indicates that incidents connected with blocked lanes or roads contribute significantly to the overall increase in the total number of incidents during rush hours. Blocked lanes or roads can result from accidents, construction work, or other factors that impede the normal flow of traffic. The prevalence of incidents related to blocked lanes or roads during rush hours suggests that traffic congestion and disruptions play a significant role in the occurrence of incidents during peak periods.
+							<object type="text/html" data="day_total.html" height="600" width="800"></object>
+							<h4>3. What are the most dangerous areas for pedestrians and cyclists in Calgary?</h4>
+							The guiding question seeks to identify the locations and time periods where pedestrians and cyclists are most vulnerable to incidents. 
+							By filtering the incident data specifically for pedestrian and cyclist-related incidents, it becomes possible to gain insights into the areas and times that pose higher risks for these road users in Calgary.
+
+							Based on the analysis, the top three worst neighborhoods for pedestrians are identified as Beltline, Downtown commercial core, and Forest Lawn. 
+							These neighborhoods have a higher frequency of incidents involving pedestrians, indicating that pedestrians in these areas are at a greater risk of being involved in accidents or facing safety concerns.
+							<object type="text/html" data="pedestrians.html" height="450" width="800"></object>
+							When examining the time periods, it is observed that the morning rush hour at 8 am and the time window from 2 pm to 6 pm are particularly dangerous for pedestrians. The increased incidents during these periods may be attributed to higher pedestrian activity during commute hours and school dismissal times, as well as potential congestion and traffic-related challenges in these neighborhoods.
+							<br/><br/>
+							<object type="text/html" data="morning_pedestrians.html" height="450" width="800"></object>
+							<object type="text/html" data="evening_pedestrians.html" height="450" width="800"></object>
+							Similarly, the top three worst neighborhoods for cyclists are identified as Beltline, Downtown commercial core, and Sunnyside. These areas have a higher incidence of cyclist-related incidents, highlighting the risks faced by cyclists in these locations.
+							<object type="text/html" data="cyclists.html" height="450" width="800"></object>
+							Regarding the time periods for cyclists, the analysis indicates that the time window from 4 pm to 5 pm and around 7 pm is particularly dangerous. These time periods may coincide with peak traffic hours and increased cyclist presence on the road, potentially leading to a higher risk of incidents.
+							<object type="text/html" data="morning_cyclists.html" height="450" width="800"></object>
+							<object type="text/html" data="evening_cyclists.html" height="450" width="800"></object>
+							The findings emphasize the importance of focusing on these specific neighborhoods and time periods to implement targeted safety measures and interventions. Enhancements such as improved infrastructure, designated cycling lanes, traffic management strategies, and educational campaigns can help mitigate risks for pedestrians and cyclists in these areas, ultimately promoting safer and more accessible transportation options.
+							<br/><br/>
+							<h3>Conclusion</h3>
+							Overall, the findings highlight the importance of analyzing incident frequency based on neighborhoods, as it allows for a better understanding of localized traffic challenges and helps guide decision-making processes to improve traffic safety and management.
+							<br/><br/>
+							Understanding the temporal patterns of traffic incidents is vital for effective traffic management and the implementation of strategies to reduce incidents during peak hours. By focusing on targeted interventions such as improving traffic flow, managing construction schedules, and enhancing public transportation options, authorities can mitigate congestion and decrease the occurrence of incidents, ultimately improving road safety and minimizing travel disruptions.
+							<br/><br/>
+							The analysis of the frequency of traffic incidents based on the time of day highlights the presence of two rush hours, namely in the morning around 8 am and in the evening around 5 pm, during which the number of incidents is notably higher. Additionally, incidents related to blocked lanes or roads contribute significantly to the overall increase in incidents during these peak periods. These findings emphasize the importance of implementing measures to manage traffic flow and address congestion issues during these specific timeframes to enhance road safety and optimize transportation systems in Calgary.
+							<br/><br/>
+							By understanding the most dangerous areas and times for pedestrians and cyclists in Calgary, authorities and policymakers can prioritize resources, implement proactive safety measures, and raise awareness to ensure the well-being and protection of vulnerable road users.
+							<br/><br/>
+							<h3>References</h3>
+							1. <a href = "https://data.calgary.ca">City of Calgary Open Data portal</a>
+							<br />
+							2. <a href = "https://data.calgary.ca/Transportation-Transit/Traffic-Incidents/35ra-9556">Calgary Traffic Incidents Dataset</a>
+							<br />
+							3. <a href="https://data.calgary.ca/Base-Maps/Community-Boundaries/ab7m-fwn6">Calgary Neighborhoods Boundaries Geo-spatial Dataset</a>
+							<br/>
+							4. <a href="https://plotly.com/python/">Plotly Open Source Graphing Library for Python</a>
+							<br/>
+							5. <a href = "https://geopandas.org/en/stable/docs.html">GeoPandas Library for Python Documentation</a>
+							
 						</ul>
 					</section>
 
