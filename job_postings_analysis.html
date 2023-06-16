@@ -43,124 +43,193 @@
 							<a href="https://github.com/orlovtsu/" class="button" target=”_blank”>GitHub Repository</a>
 						</header>
 						<p>
-                            <h3>Introduction</h3>
-							Introduction to Job Posting Analysis
-
-							<h3>Dataset</h3>
+                            <h2>Introduction</h2>
+                        
+                            The Data Science field is still capturing attention from different people who want to understand: <br/>"What do they do?" or "How can I become a Data Scientist?". 
+                            And some of them decide to dive deeper and learn Data Science and connect their lives with Data Science field. I am such person who passioned about every work with Data 
+                            from Data Collection to Machine Learning and other Data Science activities. This is why I decided to find some data and tell the story about Data Science Jobs using this data.
+                            <br/> <br/>
+                            In this project I am considering Data Science from the point of view of employers. In spite the Data Science is the interesting field of knowledge, it is also in-demand job which can be paid. But what are employees pay for? 
+                            What stratums this field is dividing? What should be learned from one to another job type? By what skills you can upgrade your LinkedIn profile to find the best mathc with job posting. 
+                            And is it actual for the place I live where? For these questions I am going to answer by this article.
+                            <br/><br/>
+							<h2>Dataset</h2>
+							For this research I decided to get real data about job postings in Canada and decided to collect data from LinkedIn, the best social network for finding job 
+                            which can provide best service for job searchers by convinient job search engine, opportunity to Easy Apply, matching personal profile with job posting and great opportunity to
+                            make personal professional network for each other. The dataset was collected at the first decade of June in 2023 and data provided in this report is more actual for the job market situation in June 2023.
+                            <br/><br>
+                            Actually, LinkedIn does not support the automatized collection of the data and if you will try to do this be aware that this fact can bethe violation ot the Term of Use.
+                            This is why I can't provide dataset which I collected for this research, but I can explain the approach I used and key insights I got. 
+                            <br/><br>
+							<h2>Methodology</h2>
+							<h2>1. Data Cleaning & Preparation</h2>
 							
-                            LinkedIn job postings. Data Collecting. 
-
-							<h3>Methodology</h3>
-							<h4>1. Data Cleaning & Preparation</h4>
-							<br/><br/>
-                            Web scraping using Selenium and BeautifulSoup in two stages:
-                            <br/><br/>
-                            - scraping job titles, company names and URLs to job posting;
-                            <br/><br/>
-                            - scraping job descriptions, skill sets, company size, location, workplace type, job level, how long it was posted, how many applicants
-                            <br/><br/>
-                            3,659 job postings were collected, almost 200 lost because they were lost next day after the 1st step
-                            <br/><br/>
-                            Job title and Job level labeling in the entire dataset
-                            <br/><br/>
-                            Cleaning to only 8 most popular types of jobs: Data Scientist, Data Engineer, Data Analyst, Machine Learning Engineer, Software Engineer, Product Manager, Business Intelligence and Data Entry
-                            <br/><br/>
-                            2,748 rows after cleaning and filtering
-
-							<h3>Guiding Questions</h3>
-							<h4>1. What Data jobs are on-demand in Canada in 2023?                            </h4>
-                            Text Block 1
-                            <br /><br />
-							<object type="text/html" data="plot1.html" height="800" width="800"></object>
-							<br /><br />
-                            Text Block 2
-                            <br /><br />
-							<object type="text/html" data="plot2.html" height="800" width="800"></object>
-							<br /><br />
-                            Text Block 3
-                            <br /><br />
-							<object type="text/html" data="plot3.html" height="800" width="800"></object>
-							<br /><br />
-						
-							<h4>2. How are Data jobs distributed through the Canada, industries and different companies?</h4>
-							<br/><br/>
-							Text Block 4
-							<br /><br />
-							<object type="text/html" data="plot4.html" height="800" width="800"></object>
-							<br /><br />
-                            Text Block 5
-							<br /><br />
-							<object type="text/html" data="plot5.html" height="800" width="800"></object>
-							<br /><br />
-                            Text Block 6
-							<br /><br />
-							<object type="text/html" data="plot6.html" height="800" width="800"></object>
-							<br /><br />
-							<h4>3. Which skills set is important for each job? How to make your LinkedIn profile matching with job postings? What should you know from related fields?</h4>
-							<br /><br />
-                            Text Block 7
-							<br /><br />
-							<object type="text/html" data="plot7.html" height="800" width="800"></object> 
-                            <br /><br />
-                            Text Block 8
-							<br /><br />
-							<object type="text/html" data="plot8.html" height="800" width="800"></object> 
-                            <br /><br />
-                            Text Block 9
-							<br /><br />
-							<object type="text/html" data="plot9.html" height="800" width="800"></object>   
-                            <br /><br />
-                            Text Block 10
-							<br /><br />
-							<object type="text/html" data="plot10.html" height="800" width="800"></object>                       
-							<h3>Conclusion</h3>
-                            <br /><br />
-                            Text Block 11
-							<br /><br />
-							<object type="text/html" data="plot11.html" height="800" width="800"></object>                       
-                            <br /><br />
-                            Text Block 12
-							<br /><br />
-							<object type="text/html" data="plot12.html" height="800" width="800"></object>   
-                            <h4>4. What are the most popular languages and tools in Data Science based on Job Postings?</h4>                    
-							<br /><br />
-                            Text Block 13
-							<br /><br />
-							<object type="text/html" data="plot13.html" height="800" width="800"></object> 
-                            <br /><br />
-                            Text Block 14
-							<br /><br />
-							<object type="text/html" data="plot14.html" height="800" width="800"></object> 
-                            <br /><br />
-                            Text Block 15
-							<br /><br />							
-                            <object type="text/html" data="plot15.html" height="800" width="800"></object> 
-                            <br /><br />
-                            Text Block 16
-							<br /><br />
-							<object type="text/html" data="plot16.html" height="800" width="800"></object> 
-                            <h4>4. What are the most popular languages and tools in Data Science based on Job Postings?</h4> 
+                            I used Selenium code on Python for scraping the page and BeautifulSoup library for parsing the page.
                             
+                            So, the first step to collect the data was to understand how the data in LinkedIn job search organized. There are two main parts of the page where you can find a short info about a job title, company name and location in the right part of page. 
+                            At the left part of page the full description, skill set and some additional information are provided. The page is not downloading to personal computer and collecting during the clicks and scroll through the page.
+                            Once I understand this structure I decided to divide scraping to two stages.
+                            <br/><br>
+                            At the first scraping stage I collected only the Job titles, Company names, Location and URL to entire job description. For colecting data I used specific keywords: "data", "machine learning", 
+                            "intelligence", "ml", "ai" and "bi". The important thing is to place keywords to quotes because in this case you "tell" to the search engine that job posting MUST contain these words. And I did job search for each 
+                            keyword separately for ech province in Canada. It helps to collect more slow and save collector from the losing of data if something will go wrong.
+                            This approach helped me to collect relatively fast the list of jobs which I will analyse.
                             <br/><br/>
-                            Text Block 17
+                            The second stage was to collect job descriptions, skill sets, company sizes, locations, workplace types, job levels, how long it was posted, how many applicants applied for each job. 
+                            Everything was doing using URLs collected at the first stage. The second stage was a bit longer because the script should be imitating some clicks on the page for scraping the skill set.
+                            Anyway, after 3 days of 24 hours work of 2 laptops the data set with 3,659 job postings was collected and ready for labeling and cleaning.
+                            Almost 200 job postings were lost because they was trying to collect at the next day after the first step and was expired. The Data Science job market is pretty fast.
+                            <br/><br/>
+                            I posted Python sctipts which I have written for scraping to my GitHub page. There you can explore the code more accurate and understand how I used some tricks to aviod ban.
+                            <br/><br/>
+                            The cleaning stage was pretty long because I needed to classify all job titles which sometimes each company tries to name by specific way and to clean the dataset from jobs probably not related with 
+                            Data Science field but collected because they have specific keywords. The most cleaning process was doing by hand and took some time but when I found 
+                            that some significant for my research number of rows was written by French I found myself in some stupor because I don't know French yet. This is one of my 
+                            goals but not today. What should I do with these rows if I don't know the language they written by? I should find someone who knows it and find it fast. For example using some API.
+                            For example, GPT model from <i>OPENAI</i> library for python. I decided to send the list of titles to GPT model in French and ask it to translate to English and return it by 
+                            the Python list. And the only thing after that which I need to to was to split the data by comma and replace the job titles in my dataset. Nice tip how to operate with text data at the 
+                            language you don't know. By of course, everybody who use GPT model from OpenAI should  <b> know that this model does not provide any privacy and remember not to send sensitive data to it</b>.
+                            After the all cleaning, translating and labeling the job titles and job levels the dataset to analyse contained 2,748 rows and 17 columns with only 8 Data Science job classes which were most popular in the dataset:
+                            Data Scientist, Data Engineer, Data Analyst, Machine Learning Engineer, Software Engineer, Product Manager, Business Intelligence and Data Entry.
+                            <br /><br />
+							<h2>Guiding Questions</h2>
+							<h2>1. What Data jobs are in demand in Canada in 2023?                            </h2>
+                            First of all, the most interesting question is what type of Data Science job is most hired by companies and how the proportion of each job is distributed in Canada in June 2023. 
+                            The first key insight is the Data Engineer, Data Scientist and Data Analyst jobs takes more than 70% of all Data Science job market. These jobs are mostly in demand now and the most
+                            demanded job is Data Engineer with 31% of job market. So, if you are Data Engineer or planning to become Data Engineer, this is the hottest job now in our field.
+                            Data Analyst and Data Scientist are still on top of Data Science jobs. And the insightful thing that Software Engineers are hired by companies mostly for developing 
+                            AI tools together with Machine Learning Engineers. Product Managers is also popular job based on job posting data, such as Data Entry position. Actually, Data Entry job is hardly to classify 
+                            by Data Science role, but but since this work is data related and quite popular, I decided to include it in this study. And BI has not a huge proportion in our dataset but maybe the reason is in the title of jobs and mostly 
+                            BI tasks are included to the Data Analyst positions.  
+                            
+							<object type="text/html" data="plot1.html" height="800" width="800"></object>
+							
+                            Along with the question of who is in demand, a good question is what level companies need. And the answer to this question is very clear. 
+                            More than half (52,6%) of the positions are open to middle and senior level specialists. 
+                            However, in 2023, Canada also has a significant number of positions for entry-level data specialists (22.7%) and accosiates (3.82%), as well as internships (2.84), 
+                            most of which are co-op formats that are unique to Canada and are excellent opportunities for starting a career for young specialists.
+                            Data Science Directors are most demanded from leading postions with 4.15%
+                            
+							<object type="text/html" data="plot2.html" height="800" width="800"></object>
+							
+                            And sometimes it's interesting to look in what industries all these specialists works. And the answer is that 4 main industries takes more than 50% of Data Science jobs market:
+                            Software Development (17.1%), IT Service and Consulting (17.1%), Finance Service (11.5%) and Staffing and Recruting (7.93%). 
+                            The last industry is highly probable represented by intermediary companies that hire data scientists for their clients.
+                            The one additional insght that Health Care industry has almost 5.5% of Data Science job market which is very high and characterizes that in Canada, 
+                            the field of Health Care and medicine is at a high-tech level.
+                            
+							<object type="text/html" data="plot3.html" height="800" width="800"></object>
+							
+						
+							<h2>2. How are Data jobs distributed through the Canada, industries and different companies?</h2>
+							But what if you are young Data Science specialist who decide where to live, what is the city where you can find the most matching to you job. The answer we can find in Geographical analysts 
+                            and find that the most Data Science Jobs city in Canada is Toronto, the second one - Montreal, the third one is Vancouver and Calgary is placed on the fourth place. So, as Calgary resident I can 
+                            say that Calgary is the first Data Science city in Alberta and one of the top Data Science cities in Canada.  
+							
+							<object type="text/html" data="plot4.html" height="800" width="800"></object>
+							
+                            Analysing the structure of these jobs using the following bar chart we can find some more insights, such as the second popular location for Data Science jobs is Remote. Hiring remote specialists in Canada is highly 
+                            popular, especially for the U.S. companies. So, if you are looking for the remote job from home, Data Science is the field where you can find a lot of opportunities for this. 
+                            As Calgarian Data Scientist I'm very interesting about Calgary and I found than unlinke other locations Calgarian companies more likely hire Data Scientists but not other related specialists such as
+                            Data Engineers or Data Analysts. This fact gives us some insights about the structure of Calgarian job market which is filled with a lot of young and fast growing startups.
+							
+							<object type="text/html" data="plot5.html" height="600" width="800"></object>
+							
+                            The structure of job market would be incomplite without understanding of the number of companies hiring Data Science specialists and without understanding how many job postings posted in each part of the job market structure.
+                            So, analysing these two questions I found that most of jobs came from middle-large and extra-large companies which may be as long as large Canadian companies as international companies hiring through the Canada.
+                            And the other part is the local part of companies different sizes and mostly hired localy in  cities they are located. 
+							
+							<object type="text/html" data="plot6.html" height="620" width="800"></object>
+
+							<object type="text/html" data="plot6_1.html" height="620" width="800"></object>							
+                            <h2>3. Which skills set is important for each job? How to make your LinkedIn profile matching with job postings? What should you know from related fields?</h2>
+							
+                            Understanding the jobs required by companies we should also understand what skill set should ideal candidate have for each job positions. 
+                            Of course each position is different from each other, but knowing what is most required, improving their skills in each of this skill and sharing their experience in their 
+                            LinkedIn page candidates could improve their chances to match with job posting in the field they focused on. 
+                            This is why I am providing 8 simple bar charts containing the top 20 skills for each Data Science job based on job postings skill sets.
+                            And analysing this we can find that most important skills for Data Scientists in 2023 are Data Science (which is obvious), 
+                            Data Visualization, Data Analytics, Natural Language Processing, Predictive Analytics, Statistics, Communications and so on. The entire skill set is placed on the bar chart below.
+							
+							<object type="text/html" data="plot7.html" height="620" width="800"></object> 
+                            
+                            For Data Analysts the demanded skill set starts from Data Analytics, Communications, Analytical Skills, Data Analysis, Analytics, Visualiazation and Problem Solving. 
+                            The same as the previous the entire skill set is placed on the chart bellow.
+							
+							<object type="text/html" data="plot8.html" height="620" width="800"></object> 
+                            
+                            Machine Learning Engineers to be matchin with the most MLE job postings should know Computer Science, Data Science, Artificial Intelligence, Machine Learning, Pattern Recognition,
+                            Natural Language Processing, Software Engineering, Programming, Python, Data Mining, Deep Learning etc.
+							
+							<object type="text/html" data="plot9.html" height="620" width="800"></object>   
+                            
+                            The top 5 Data Engineer Skills: ETL (Extract, Transform and Load), Data Engineering, Databases, Communication and Data Modeling. Following skills are placed on the bar
+                            chart bellow.
+							
+							<object type="text/html" data="plot10.html" height="620" width="800"></object>                       
+                            
+                            Software Engineers looking for the career in Data Science field should know Software Engineering (obviously), Communication, Computer Science, Databases, Back-End Web Development, Programming, SQL and other skills bellow.
+							
+							<object type="text/html" data="plot11.html" height="620" width="800"></object>                       
+                           
+                            Business Intelligence specialists should be experienced in Communication, BI, Data Analytics, Databases, Analytical Skills, creating Dashborads, opearating with Datawarehouses,
+                            ETL, Problem Solving and Data Modeling and other skills bellow.
+							
+							<object type="text/html" data="plot12.html" height="620" width="800"></object>   
+                            Product Managers also should be able to Communicate efficiently, to be familiar with  Data Analytics and Data Analysis, Problem Solving, Query Writing, Project Management (obviously), MS Power Query and some more skills bellow.            
+
+							<object type="text/html" data="plot13.html" height="620" width="800"></object> 
+                            
+                            Data Entry specialists should be qualified in English, Online Search, Global Business, Data Science, Data Mining and other skill set bellow. 
+							
+							<object type="text/html" data="plot14.html" height="800" width="800"></object> 
+                            
+                            As careful reader could find, many skills are placed in different Data Science jobs and may sign that any Data specialist should be familiar with skills from related job. This insight 
+                            leads us to construct the model of competencies of each job position. As we can find on the char bellow Data Scientists should be also have skills of Data Analyst, Data Engineer and Machine Learning Engineer. 
+                            As a Data Scientist other specialists on the charts bellow should be familiar with skills from different jobs. To take more information please play with charts bellow and fill free to give the feedback about 
+                            this model.
+														
+                            <object type="text/html" data="plot15.html" height="800" width="800"></object> 
+                            
+							<object type="text/html" data="plot16.html" height="800" width="800"></object> 
+                            <h4>4. What are the most popular programming languages and tools in Data Science based on Job Postings?</h4> 
+                            Most of competencies are understandable for us now, but practically the question "What I should learn to be more competitive?" is still on the table. 
+                            To answer this question I analysed all of the job descriptions to find specific names of programming languages, tools and libraries.
+                            And the answers for these questions are placed on three following tree plots. 
+                            The top 3 most popular languages for Data Science jobs are SQL, Python and R. So, these languages are kinds of MUST HAVE in Data Science field and should be knowing by
+                            anyone who whant to be competitive at the job marker in this field. Java, SAS, Scala, C++ and other languages are also important for Data Science roles.
+                            
                             <object type="text/html" data="plot17.html" height="800" width="800"></object> 
-                            <br/><br/>
-                            Text Block 18
+                            When it comes to tools, Microsoft Excel is the MUST HAVE tool for anyone who want to work in Data field, as also Power BI, Tableau, AWS, Azure and other important tools related with Data Engineerng, Machine Learning and Version control process.
                             <object type="text/html" data="plot18.html" height="800" width="800"></object> 
                             <br/><br/>
-                            Text Block 19
+                            According to libraries from the tree chart bellow we can find that such Machine Learning libraries as TensorFlow, PyTorch, data manipulating library Pandas, NumPy, sk-learn and others are higly important for our field. 
+                            So, if you are not familiar with these libraries and going to enter the market, start learning today, because hiring companies expect it from us in 2023.
                             <object type="text/html" data="plot19.html" height="800" width="800"></object> 
-                            <br /><br />
+                           
                             <h3>Conclusion</h3>	
+                            Concluding, I want to say thanks for all developers of libraries which I used for this work. I also thank to LinkedIn for their great job board and hope they will not ban me
+                            for this project, because the main goal I pursue is to share the knowledge which I got from the data to help people navigate in the field and if it will help to anyone, these anyone will
+                            come to the LinkedIn and find another job via this great professional network.
+                            <br/><br/>
+                            I  want to say special thanks to my lovely wife, her great patience, support and also laptop which I used for this project as a second station. 
+                            <br/><br/>
+                            And I also want to thanks to my colleagues, professors, assitants and students of the University of Calgary which is providing the great Master of Data Science and Analytics program.
+                            <br/><br/>
+                            Hope, you were enjoed this reading. 
+                            <br/><br/>
+                            If you have any questions, comments or just want to connect with me, please fill free to contact with me via LinkedIn. 
                             <br/><br/>
 							<h3>References</h3>
-							1. <a href = "">r1</a>
+							1. <a href = "https://www.selenium.dev/ ">Selenium - Open Source toolkit for automation of web browser.</a>
 							<br />
-							2. <a href = "">r2</a>
+							2. <a href = "https://www.crummy.com/software/BeautifulSoup/bs4/doc/ ">Beautiful Soup - Python package for parsing HTML and XML documents.</a>
 							<br />
-							3. <a href="">r3</a>
+							3. <a href="https://www.linkedin.com/jobs/ ">LinkedIn Job Board - The initial source of this research. </a>
 							<br/>
-							4. <a href="https://plotly.com/python/">r4</a>
+							4. <a href="https://plotly.com/python/">Plotly - One of the best visualization libraries for Python. </a>
+							<br/>
+                            5. <a href="https://openai.com/blog/openai-api">OpenAI API Toolkit - Strong instrument to use LLM GPT-3.5 in your application. </a>
 							<br/>
 							
 							
