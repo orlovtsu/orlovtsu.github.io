@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://orlovtsu.github.io/sitemap.xml
